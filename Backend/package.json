@@ -5,8 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node src/app.js"
-
+    "dev": "nodemon src/app.js"
   },
   "keywords": [],
   "author": "Weingast Lilian",
@@ -21,6 +20,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.2",
     "morgan": "^1.10.0",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "punycode": "^2.3.1"
   }
 }

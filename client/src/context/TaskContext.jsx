@@ -16,17 +16,15 @@ export const useTasks = () => {
 };
 
 export const TaskProvider = ({ children }) => {
-  //generamos las tareas y sus estados para exportar en el provider
   const [task, setTask] = useState([]);
 
-  //1) Crear
+  //Crear tarea
   const createTask = async (task) => {
-    // console.log(task);
+ 
     const res = await createTaskReq(task);
-    // console.log(res);
   };
 
-  //2) Buscar
+  //Buscar
   const getAllTask = async () => {
     const res = await getTaskReq();
     // console.log(res);
@@ -37,7 +35,7 @@ export const TaskProvider = ({ children }) => {
     }
   };
 
-  //3) Eliminar
+  //Eliminar
   const deleteTask = async (id) => {
     try {
       const res = await deleteTaskReq(id);
@@ -48,19 +46,17 @@ export const TaskProvider = ({ children }) => {
     }
   };
 
-  //4) Buscar por Id
+  //Buscar por Id
   const getTaskById = async (id) => {
     try {
       const res = await getTaskByIdReq(id);
-      // console.log(res);
-      //retornamos para que lo pueda ver en el taskFormPage
       return res.data;
     } catch (error) {
       console.log(error);
     }
   };
 
-  //5) Actualizar
+  //Actualizar
   const updateTask = async (id, task) => {
     try {
       const res = await updateTaskReq(id, task);

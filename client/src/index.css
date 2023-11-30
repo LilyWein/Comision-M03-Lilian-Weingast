@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 body {
-  background-color: rgba(0, 0, 0, 0.963);
-  color: white;
-}
+  background-color: rgba(24, 6, 68, 0.963);
+  color: rgba(182, 181, 183, 0.963);
+  }
+
+Nav {
+background-color: rgba(41, 15, 106, 0.963);}

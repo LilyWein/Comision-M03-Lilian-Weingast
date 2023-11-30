@@ -23,4 +23,4 @@ app.use(authroutes);
 app.use(taskRoutes);
 const PORT = settingDotEnvDB().port || 5000;
 
-app.listen(PORT, () => console.log(`Servidor a en puerto ${PORT}`));
+app.listen(PORT, () => console.log(`Servidor en puerto ${PORT}`));

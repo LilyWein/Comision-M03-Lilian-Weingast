@@ -28,7 +28,7 @@ export const TaskCard = ({ task }) => {
         editar
       </Link>
       
-     {/*<img
+     {/*<imagen
         src= {post.imagen}
         alt=""
       />*/}

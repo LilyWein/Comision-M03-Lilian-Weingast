@@ -36,7 +36,7 @@ export const getTaskById = async (req, res) => {
 
 // POST CREAR TAREA
 export const createTask = async (req, res) => {
-  const { title, description, completed, image, date } = req.body;
+  const { title, description, completed, /*imagen*/ date } = req.body;
   try {
     const newTask = new Task({
       title,

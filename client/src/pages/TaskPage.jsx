@@ -16,14 +16,14 @@ export const TaskPage = () => {
     return (
       <>
         <Navbar />
-        <h1>No Tiene Tareas</h1>
+        <h1>No Tiene Posteos</h1>
       </>
     );
 
   return (
     <>
       <Navbar />
-      <h1>Tareas</h1>
+      <h1>Posteos</h1>
       
       <div className="grid grid-cols-3 gap-2">
         {task.map((task, i) => (

@@ -15,8 +15,9 @@ const taskSchema = new Schema(
       required: true,
     },
 
-   /* imagen: {
-      type: Object ,
+    /*imagen: {
+      type: String,
+      required: true,
     },*/
 
     date: {

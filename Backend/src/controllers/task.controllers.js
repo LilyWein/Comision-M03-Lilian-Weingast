@@ -1,14 +1,14 @@
 import Task from "../models/task.model.js";
 
-//TODO: GET TODAS LAS TAREAS
+
 export const getAllTasks = async (req, res) => {
   try {
-    //primero mostramos el find sin atributos y despues con atributos
+   
     const allTasks = await Task.find({
-      //para cuando agregamos la logica para cada usuario
+      
       user: req.user.id,
-      //para ver toda la información el populate
-    }).populate("user"); //con esto mostramos toda la info
+     
+    }).populate("user"); 
 
     res.status(200).json(allTasks);
   } catch (error) {
@@ -18,7 +18,7 @@ export const getAllTasks = async (req, res) => {
   }
 };
 
-//TODO: GET TAREA BY ID
+// Ver Tarea por ID
 export const getTaskById = async (req, res) => {
   const { id } = req.params;
   try {
@@ -34,16 +34,16 @@ export const getTaskById = async (req, res) => {
   }
 };
 
-//TODO: POST CREAR TAREA
+// POST CREAR TAREA
 export const createTask = async (req, res) => {
-  const { title, description, completed, date } = req.body;
+  const { title, description, completed, /*imagen*/ date } = req.body;
   try {
     const newTask = new Task({
       title,
       description,
       completed,
+      /*imagen,*/
       date,
-      //para cuando agregamos la logica para cada usuario
       user: req.user.id,
     });
 
@@ -54,7 +54,7 @@ export const createTask = async (req, res) => {
   }
 };
 
-//TODO: PUT ACTUALIZAR TAREA
+//PUT ACTUALIZAR TAREA
 export const updateTask = async (req, res) => {
   try {
     const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, {
@@ -68,7 +68,7 @@ export const updateTask = async (req, res) => {
   } catch (error) {}
 };
 
-//TODO: DELETE ELIMINAR TAREA
+//DELETE ELIMINAR TAREA
 export const deleteTask = async (req, res) => {
   const { id } = req.params;
   try {

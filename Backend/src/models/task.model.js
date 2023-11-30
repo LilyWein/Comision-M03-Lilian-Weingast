@@ -14,15 +14,24 @@ const taskSchema = new Schema(
       type: Boolean,
       required: true,
     },
+
+    /*imagen: {
+      type: String,
+      required: true,
+    },*/
+
     date: {
       type: Date,
       default: Date.now,
     },
+    
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
+
+      
   },
   {
     timestamps: true,

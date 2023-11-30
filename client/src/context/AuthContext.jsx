@@ -11,42 +11,41 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  //1)datos del usuario que va a ser leido en toda la aplicación.
+  //datos del usuario que va a ser leido en toda la aplicación.
   const [user, setUser] = useState(null);
 
-  //3) informe si esta o no Autenticado
+  //informe si esta o no Autenticado
   const [isAuth, setIsAuth] = useState(false);
 
-  //4) Manejamos los estados de errores:
+  //Manejo de estados de errores:
   const [errors, setErrors] = useState([]);
 
-  //2)datos del registro, lo traemos de Register.jsx ya que hace el mismo llamado para obtener datos del usuario
+  //datos del registro
   const signup = async (user) => {
     try {
       const res = await registerReq(user);
-      //actualizamos al user con este setUser
+      //actualizacion del usser
       setUser(res.data);
       setIsAuth(true);
     } catch (error) {
-      // console.log(error.response.data);
-      //cambiamos el estado del error para el contexto
+      
       setErrors(error.response.data);
     }
   };
 
-  //5) Para validar el Login
+  // Validación del Login
   const signin = async (user) => {
     try {
       const res = await loginRequest(user);
       setUser(res.data);
       setIsAuth(true);
     } catch (error) {
-      // console.log(error);
+     
       setErrors(error.response.data);
     }
   };
 
-  //6) Logout
+  //Logout
 
   const signout = () => {
     Cookies.remove("token");
@@ -54,10 +53,8 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  //este useEffect es para manejar el tiempo del error y limpiar pasado el tiempo estipulado
   useEffect(() => {
     if (errors.length > 0) {
-      //el uso de timers en react es peligroso por eso generamos lo siguiente
       const timer = setTimeout(() => {
         setErrors([]);
       }, 5000);
@@ -65,7 +62,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, [errors]);
 
-  //Este useEffect es para cuando validamos cookies
+  // Para cuando validamos cookies
   useEffect(() => {
     async function verifyLogin() {
       const cookies = Cookies.get();
@@ -91,7 +88,6 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        //con esto se va a poder llamar al signup y al user desde el contexto
         signup,
         signin,
         signout,

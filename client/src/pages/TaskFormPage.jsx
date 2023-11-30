@@ -7,18 +7,15 @@ import { useEffect } from "react";
 export const TaskFormPage = () => {
   const { register, handleSubmit, setValue } = useForm();
 
-  const { task, createTask, getTaskById, updateTask } = useTasks();
-  // console.log(task);
-  // console.log(createTask);
-
-  //carga la aplicación lea ese parametro de la url
+  const {task, createTask, getTaskById, updateTask } = useTasks();
+  
   const params = useParams();
   useEffect(() => {
-    // console.log(params);
+    
     async function loadTask() {
       if (params.id) {
         const task = await getTaskById(params.id);
-        //el setValue del useForm
+       
         setValue("title", task.title);
         setValue("description", task.description);
       }
@@ -28,12 +25,7 @@ export const TaskFormPage = () => {
 
   const navigate = useNavigate();
   const onSubmit = handleSubmit((data) => {
-    // console.log(data);
-    //A) esto es para probar para crear tarea
-    // createTask(data);
-    // navigate("/task");
-
-    //B) en caso de que actualicemos tenemos que hacer la condicional
+   
     if (params.id) {
       updateTask(params.id, data);
     } else {

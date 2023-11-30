@@ -36,7 +36,7 @@ export const handleErrorValidations = (req, res, next) => {
 
   if (!error.isEmpty()) {
     return res.status(400).json([error.errors[0].msg]);
-    // return res.status(400).json({ message: "Error en la validación", error });
+  
   }
   next();
 };

@@ -12,7 +12,7 @@ export const Login = () => {
 
   const { signin, isAuth, errors: loginErrors } = useAuth();
 
-  //usamos este hook para redireccionar a otra pagina
+  //hook para redireccionar a otra pagina
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -32,7 +32,7 @@ export const Login = () => {
           </div>
         ))}
         <form
-          //cuando presionamos el boton register hacemos la consulta
+          
           onSubmit={onSubmit}
         >
           <input

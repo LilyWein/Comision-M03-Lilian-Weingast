@@ -4,7 +4,9 @@ export const HomePage = () => {
   return (
     <>
       <Navbar />
-      <div>Home Page</div>
+      <div>Inicio</div>
+     
+
     </>
   );
 };

@@ -20,23 +20,7 @@ export const register = async (req, res) => {
     });
 
     const savedUser = await newUser.save();
-    // res.status(200).json(savedUser);
-
-    //Para crear token - modo 1
-    // jwt.sign(
-    //   { id: savedUser._id },
-    //   "secret123",
-    //   {
-    //     expiresIn: "1h",
-    //   },
-    //   (err, token) => {
-    //     if (err) console.log(err);
-    //     res.cookie("token", token);
-    //     res.json({ savedUser });
-    //   }
-    // );
-
-    // Para crear token - modo 2 (desde un archivo)
+   
     const token = await createAccessToken({ id: savedUser._id });
     res.cookie("token", token);
     res.json({
@@ -62,7 +46,6 @@ export const login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, userFound.password);
     if (!isMatch) return res.status(400).json(["Error en las credenciales"]);
 
-    // Para crear token - modo 2 (desde un archivo)
     const token = await createAccessToken({ id: userFound._id });
     res.cookie("token", token);
     res.json({
@@ -94,12 +77,12 @@ export const profile = async (req, res) => {
       createdAt: userFound.createdAt,
       updatedAt: userFound.updatedAt,
     });
-    // console.log(req.user);
+  
   } catch (error) {}
 };
 
 const { secret } = SECRET_TOKEN();
-//TODO: controller para verificación del token desde el backend
+
 export const verifyToken = async (req, res) => {
   const { token } = req.cookies;
 

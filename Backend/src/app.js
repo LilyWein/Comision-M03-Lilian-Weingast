@@ -7,7 +7,7 @@ import authroutes from "./routes/auth.routes.js";
 import taskRoutes from "./routes/task.routes.js";
 import cookieParser from "cookie-parser";
 
-const app = express();
+export const app = express();
 connectMongo();
 
 app.use(express.json());

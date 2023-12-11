@@ -6,33 +6,37 @@ const taskSchema = new Schema(
       type: String,
       required: true,
     },
-    description: {
-      type: String,
-      required: true,
-    },
-    completed: {
-      type: Boolean,
-      required: true,
-    },
-
-    /*imagen: {
+    
+    /*imageURL:{
       type: String,
       required: true,
     },*/
 
+    description: {
+      type: String,
+      required: true,
+    },
+
+    user:{
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    
     date: {
       type: Date,
       default: Date.now,
     },
     
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
-
-      
+    comments:[
+       {
+         type: Schema.Types.ObjectId,
+         ref: 'Comment',
+      }
+    ],
   },
+    
+  
   {
     timestamps: true,
     versionKey: false,

@@ -71,7 +71,7 @@ export default function Navbar() {
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Notificaciones</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
+                        </button>
 
                 
                 <Menu as="div" className="relative ml-3">

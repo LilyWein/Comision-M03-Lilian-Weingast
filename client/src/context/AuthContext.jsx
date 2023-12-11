@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { registerReq, loginRequest, verifyToken } from "../api/auth";
+import { registerReq, loginRequest /*, verifyToken */} from "../api/auth";
 import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }) => {
   }, [errors]);
 
   // Para cuando validamos cookies
-  useEffect(() => {
+ /* useEffect(() => {
     async function verifyLogin() {
       const cookies = Cookies.get();
       if (cookies.token) {
@@ -83,7 +83,7 @@ export const AuthProvider = ({ children }) => {
       }
     }
     verifyLogin();
-  }, []);
+  }, []);*/
 
   return (
     <AuthContext.Provider

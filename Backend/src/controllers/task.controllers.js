@@ -1,6 +1,5 @@
 import Task from "../models/task.model.js";
 
-
 export const getAllTasks = async (req, res) => {
   try {
    
@@ -36,13 +35,11 @@ export const getTaskById = async (req, res) => {
 
 // POST CREAR TAREA
 export const createTask = async (req, res) => {
-  const { title, description, completed, /*imagen*/ date } = req.body;
+  const { title, description, completed, date } = req.body;
   try {
     const newTask = new Task({
       title,
       description,
-      completed,
-      /*imagen,*/
       date,
       user: req.user.id,
     });
@@ -85,3 +82,4 @@ export const deleteTask = async (req, res) => {
       .json({ message: "Error al intentar eliminar la tarea", error });
   }
 };
+

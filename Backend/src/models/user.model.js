@@ -7,6 +7,7 @@ const userSchema = new Schema(
       required: true,
       trim: true,
     },
+   
     email: {
       type: String,
       required: true,
@@ -16,6 +17,18 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    
+    /*avatar: {
+      type: String,
+      required: true,
+      enum: [
+        '',
+        'url_avatar_2',
+        'url_avatar_3',
+        // Agrega aquí más URLs de avatares disponibles según sea necesario
+      ],
+    },*/
+    
   },
   {
     timestamps: true,

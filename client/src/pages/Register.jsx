@@ -5,10 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 
 export const Register = () => {
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+     register, 
+     handleSubmit,
+     formState: { errors },
+    } = useForm();
 
   const { signup, isAuth, errors: authErrors } = useAuth();
  
@@ -20,14 +20,13 @@ export const Register = () => {
 
   
   const onSubmit = handleSubmit(async (values) => {
-   
-    signup(values);
+   signup(values);
   });
   return (
     <div className="flex h-screen items-center justify-center">
       <div className="bg-zinc-900 max-w-md p-8 rounded-md">
         {/* FORMULARIO */}
-        <h1 className="text-3xl text-center font-semibold mb-5">Register</h1>
+        <h1 className="text-3xl text-center font-semibold mb-5">Registro</h1>
         {authErrors.map((err, i) => (
           <div key={i} className="bg-red-800 text-white">
             {err}
@@ -71,7 +70,7 @@ export const Register = () => {
           </button>
         </form>
         <p className="flex justify-between mt-10">
-          ¿Tienes cuenta?{" "}
+          ¿Tenes cuenta registrada?{" "}
           <Link
             to="/login"
             className=" px-3 font-semibold rounded-md bg-green-500 text-white "

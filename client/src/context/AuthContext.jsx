@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
   const signup = async (user) => {
     try {
       const res = await registerReq(user);
-      //actualizacion del usser
+      //actualizacion del usuario
       setUser(res.data);
       setIsAuth(true);
     } catch (error) {

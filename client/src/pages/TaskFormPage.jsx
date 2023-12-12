@@ -52,7 +52,7 @@ export const TaskFormPage = () => {
             {...register("description")}
           ></textarea>
 
-          <label>Completado</label>
+          <label>Completo</label>
           <input type="checkbox" {...register("completed")} />
           <button
             className="flex h-10 px-6 font-semibold rounded-md bg-green-900 text-white my-5"

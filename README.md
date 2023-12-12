@@ -20,7 +20,7 @@
 1.	Clona este repositorio.
 2.	Abre una terminal en la carpeta raíz del proyecto.
 3.	Instala las dependencias del servidor 
-#### Express, Express-Validator, nodemon, dotenv, cors, morgan, mongoose, Helmet 
+#### Express, Express-Validator, nodemon, dotenv, cors, morgan, mongoose, Helmet, jsonwebtoken, bcrypt 
 4. Asegurate de tener instalada y abierta la base de datos MongoDb. Para este proyecto se creo una base llamada: proyectofinal
 5.	En la carpeta Backend: define tus propios comandos para el servidor Express aquí, como iniciar solo el servidor o realizar pruebas específicas. Para ello se incorpora un archivo .env.example donde estan detalladas las variables de entorno que debes definir.
 
@@ -34,7 +34,7 @@
       
          cd client
  
-      
+      Instalar en client Vite
 
 ### Ejecución:
 •	 Inicia el servidor Express y el cliente React Vite simultáneamente en modo de desarrollo.

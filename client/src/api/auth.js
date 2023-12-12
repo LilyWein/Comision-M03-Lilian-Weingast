@@ -1,5 +1,6 @@
 import axios from "./setCredentialsAxios";
 
+
 //registerReq 
 export const registerReq = (user) => axios.post(`/register`, user);
 

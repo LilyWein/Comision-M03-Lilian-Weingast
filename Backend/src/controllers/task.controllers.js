@@ -1,6 +1,8 @@
 import Task from "../models/task.model.js";
 
-export const getAllTasks = async (req, res) => {
+//Buscar todas las tareas
+
+export const getAllTask = async (req, res) => {
   try {
    
     const allTasks = await Task.find({
@@ -35,13 +37,14 @@ export const getTaskById = async (req, res) => {
 
 // POST CREAR TAREA
 export const createTask = async (req, res) => {
-  const { title, description, completed, date } = req.body;
+  const { title, description,  date, completed} = req.body;
   try {
     const newTask = new Task({
       title,
       description,
       date,
-      user: req.user.id,
+      completed,
+      user:req.user.id,
     });
 
     const savedTask = await newTask.save();

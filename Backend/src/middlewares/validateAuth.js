@@ -6,8 +6,8 @@ export const validateRegister = [
   body("username")
     .notEmpty()
     .withMessage("Username no debe estar vacío")
-    .isLength({ min: 6 })
-    .withMessage("El Username debe tener al menos 6 caractéres"),
+    .isLength({ min: 5 })
+    .withMessage("El Username debe tener al menos 5 caractéres"),
 
   body("email").isEmail().withMessage("Por favor ingrese un mail válido"),
 

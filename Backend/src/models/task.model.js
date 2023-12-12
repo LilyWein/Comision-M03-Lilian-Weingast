@@ -16,7 +16,7 @@ const taskSchema = new Schema(
       type: String,
       required: true,
     },
-
+    
     user:{
       type: Schema.Types.ObjectId,
       ref: "User",
@@ -27,12 +27,17 @@ const taskSchema = new Schema(
       type: Date,
       default: Date.now,
     },
-    
+
+    completed: {
+      type: Boolean,
+     require: true,
+    },
+
     comments:[
        {
          type: Schema.Types.ObjectId,
          ref: 'Comment',
-      }
+      },
     ],
   },
     

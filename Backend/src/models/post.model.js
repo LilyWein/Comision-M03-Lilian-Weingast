@@ -20,7 +20,7 @@ const postSchema = new Schema(
     comments: {
       type: String,
       ref: "Comment",
-      required: false,
+      
     },
 
     imageURL: {
@@ -28,7 +28,7 @@ const postSchema = new Schema(
       required: true,
     },
     
-    createdAt: {
+    date: {
       type: Date,
       default: Date.now,
     },

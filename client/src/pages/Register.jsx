@@ -2,35 +2,32 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
 
 export const Register = () => {
   const {
-     register, 
-     handleSubmit,
-     formState: { errors },
-    } = useForm();
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const { signup, isAuth, errors: authErrors } = useAuth();
  
-//hook para redireccionar a otra pagina
 
   const navigate = useNavigate();
   useEffect(() => {
-    if (isAuth) navigate("/task");
+    if (isAuth) navigate("/post");
   }, [isAuth]);
 
   
   const onSubmit = handleSubmit(async (values) => {
-   signup(values);
+   
+    signup(values);
   });
   return (
-    <>
-    <Navbar/>
     <div className="flex h-screen items-center justify-center">
       <div className="bg-zinc-900 max-w-md p-8 rounded-md">
         {/* FORMULARIO */}
-        <h1 className="text-3xl text-center font-semibold mb-5">Registro</h1>
+        <h1 className="text-3xl text-center font-semibold mb-5">Register</h1>
         {authErrors.map((err, i) => (
           <div key={i} className="bg-red-800 text-white">
             {err}
@@ -74,7 +71,7 @@ export const Register = () => {
           </button>
         </form>
         <p className="flex justify-between mt-10">
-          ¿Tenes cuenta registrada?{" "}
+          ¿Tienes cuenta?{" "}
           <Link
             to="/login"
             className=" px-3 font-semibold rounded-md bg-green-500 text-white "
@@ -84,6 +81,5 @@ export const Register = () => {
         </p>
       </div>
     </div>
-    </>
   );
 };

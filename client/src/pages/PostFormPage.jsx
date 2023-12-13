@@ -1,37 +1,37 @@
 import { useForm } from "react-hook-form";
 import Navbar from "../components/Navbar";
-import { useTasks } from "../context/TaskContext";
+import { usePosts } from "../context/PostContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
-export const TaskFormPage = () => {
+export const PostFormPage = () => {
   const { register, handleSubmit, setValue } = useForm();
 
-  const {task, createTask, getTaskById, updateTask } = useTasks();
+  const {post, createPost, getPostById, updatePost } = usePosts();
   
   const params = useParams();
   useEffect(() => {
     
-    async function loadTask() {
+    async function loadPost() {
       if (params.id) {
-        const task = await getTaskById(params.id);
+        const post = await getPostById(params.id);
        
-        setValue("title", task.title);
-        setValue("description", task.description);
+        setValue("title", post.title);
+        setValue("description", post.description);
       }
     }
-    loadTask();
+    loadPost();
   }, []);
 
   const navigate = useNavigate();
   const onSubmit = handleSubmit((data) => {
    
     if (params.id) {
-      updateTask(params.id, data);
+      updatePost(params.id, data);
     } else {
-      createTask(data);
+      createPost(data);
     }
-    navigate("/task");
+    navigate("/post");
   });
   return (
     <div>
@@ -52,10 +52,16 @@ export const TaskFormPage = () => {
             {...register("description")}
           ></textarea>
 
-          <label>Completo</label>
-          <input type="checkbox" {...register("completed")} />
+          <input
+            className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+            type="string"
+            placeholder="Imagen"
+            {...register("imageURL")}
+            autoFocus
+          />
+
           <button
-            className="flex h-10 px-6 font-semibold rounded-md bg-green-900 text-white my-5"
+            className="flex h-10 px-6 text-align:center font-semibold rounded-md bg-green-900 text-white my-5"
             type="submit"
           >
             Guardar

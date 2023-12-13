@@ -1,18 +1,18 @@
 import { useEffect } from "react";
 import Navbar from "../components/Navbar";
-import { useTasks } from "../context/TaskContext";
-import { TaskCard } from "../components/TaskCard";
+import { usePosts } from "../context/PostContext";
+import { PostCard } from "../components/PostCard";
 
-export const TaskPage = () => {
+export const PostPage = () => {
   
-  const { getAllTask, task } = useTasks();
+  const { getAllPost, post } = usePosts();
 
   
   useEffect(() => {
-    getAllTask();
+    getAllPost();
   }, []);
 
-  if (task.length === 0)
+  if (post.length === 0)
     return (
       <>
         <Navbar />
@@ -25,8 +25,8 @@ export const TaskPage = () => {
       <Navbar />
           
       <div className="grid grid-cols-2 gap-2">
-        {task.map((task, i) => (
-          <TaskCard task={task} key={i} />
+        {post.map((post, i) => (
+          <PostCard post={post} key={i} />
         ))}
       </div>
     </>

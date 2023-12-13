@@ -6,8 +6,8 @@ import { useAuth } from "../context/AuthContext";
 
 const navigation = [
   { name: "Inicio", href: "/", current: true },
-  { name: "Posteos", href: "/task", current: true },
-  { name: "Nuevos Posteos", href: "/add-task", current: true },
+  { name: "Posteos", href: "/post", current: true },
+  { name: "Nuevos Posteos", href: "/add-post", current: true },
   
 ];
 

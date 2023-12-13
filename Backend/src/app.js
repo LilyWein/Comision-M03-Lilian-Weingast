@@ -4,7 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 import { connectMongo } from "./database/db.js";
 import authroutes from "./routes/auth.routes.js";
-import taskRoutes from "./routes/task.routes.js";
+import postRoutes from "./routes/post.routes.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
@@ -20,7 +20,7 @@ app.use(
   })
 );
 app.use(authroutes);
-app.use(taskRoutes);
+app.use(postRoutes);
 const PORT = settingDotEnvDB().port || 5000;
 
 app.listen(PORT, () => console.log(`Servidor en puerto ${PORT}`));

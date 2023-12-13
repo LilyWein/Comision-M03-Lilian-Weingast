@@ -1,16 +1,15 @@
-import Task from "../models/task.model.js";
+import Post from "../models/post.model.js";
 
 
-export const getAllTasks = async (req, res) => {
+export const getAllPosts = async (req, res) => {
   try {
    
-    const allTasks = await Task.find({
+    const allPosts = await Post.find({
       
       user: req.user.id,
      
     }).populate("user"); 
-
-    res.status(200).json(allTasks);
+    res.status(200).json(allPosts);
   } catch (error) {
     return res
       .status(400)
@@ -19,14 +18,14 @@ export const getAllTasks = async (req, res) => {
 };
 
 // Ver Tarea por ID
-export const getTaskById = async (req, res) => {
+export const getPostById = async (req, res) => {
   const { id } = req.params;
   try {
-    const taskFound = await Task.findById(id);
+    const postFound = await Post.findById(id);
 
-    if (!taskFound)
+    if (!postFound)
       return res.status(404).json({ message: "No se encontró la tarea" });
-    res.status(200).json(taskFound);
+    res.status(200).json(postFound);
   } catch (error) {
     return res
       .status(400)
@@ -35,46 +34,46 @@ export const getTaskById = async (req, res) => {
 };
 
 // POST CREAR TAREA
-export const createTask = async (req, res) => {
-  const { title, description, completed, /*imagen*/ date } = req.body;
+export const createPost = async (req, res) => {
+  const { title, description, imageURL} = req.body;
   try {
-    const newTask = new Task({
+    console.log(req)
+    const newPost = new Post({
       title,
       description,
-      completed,
-      /*imagen,*/
-      date,
-      user: req.user.id,
-    });
+      imageURL,
+      /*autor: req.user.username,*/
+      });
 
-    const savedTask = await newTask.save();
-    res.status(200).json(savedTask);
+    const savedPost = await newPost.save();
+    res.status(200).json(savedPost);
   } catch (error) {
+    console.log(error)
     return res.status(400).json({ message: "Error al crear la tarea", error });
   }
 };
 
 //PUT ACTUALIZAR TAREA
-export const updateTask = async (req, res) => {
+export const updatePost = async (req, res) => {
   try {
-    const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, {
+    const updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     }).populate("user");
 
-    if (!updateTask)
+    if (!updatePost)
       return res.status(404).json({ message: "Tarea no encontrada" });
 
-    res.status(200).json(updatedTask);
+    res.status(200).json(updatedPost);
   } catch (error) {}
 };
 
 //DELETE ELIMINAR TAREA
-export const deleteTask = async (req, res) => {
+export const deletePost = async (req, res) => {
   const { id } = req.params;
   try {
-    const deletedTask = await Task.findByIdAndDelete(id);
+    const deletedPost = await Post.findByIdAndDelete(id);
 
-    if (!deletedTask)
+    if (!deletedPost)
       return res
         .status(404)
         .json({ message: "No se encontró la tarea para eliminar" });

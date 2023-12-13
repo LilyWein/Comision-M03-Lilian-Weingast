@@ -8,7 +8,7 @@ export const Profile = () => {
       <Navbar />
       <div>Perfil</div>
 
-      {JSON.stringify(user, null, 3)}
+      {JSON.stringify(user,null, 3)}
     </>
   );
 };

@@ -17,7 +17,7 @@ export const register = async (req, res) => {
       email,
       username,
       password: passwordHash,
-      avatar,
+      //avatar,
     });
 
     const savedUser = await newUser.save();
@@ -31,7 +31,7 @@ export const register = async (req, res) => {
       email: savedUser.email,
       createdAt: savedUser.createdAt,
       updatedAt: savedUser.updateAt,
-      avatar: savedUser.avatar,
+      //avatar: savedUser.avatar,//
     });
   } catch (error) {
     res
@@ -55,6 +55,7 @@ export const login = async (req, res) => {
     res.json({
       message: "Bienvenido!",
       username: userFound.username,
+      //avatar:userFound.avatar,
     });
   } catch (error) {
     res
@@ -102,7 +103,7 @@ export const verifyToken = async (req, res) => {
       email: userFound.email,
       createdAt: userFound.createdAt,
       updatedAt: userFound.updatedAt,
-      avatar: userFound.avatar,
+     // avatar: userFound.avatar,
     });
   });
 };

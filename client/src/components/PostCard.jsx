@@ -26,12 +26,12 @@ export const PostCard = ({ post }) => {
       <div className="flex justify-between">
         <div>
           <button
-            className="bg-red-700 rounded-md px-2 mt 16"  
+            className="bg-gray-700  rounded-md px-2 py-1 mr-4"  
             onClick={() => deletePost(post._id)}
           >
             Eliminar
           </button>
-          <Link className="bg-green-600 rounded-md px-2" to={`/post/${post._id}`}>
+          <Link className="bg-green-800 rounded-md px-2 py-1"  to={`/post/${post._id}`}>
             Editar
           </Link>
         </div>

@@ -74,11 +74,13 @@ export const createPost = async (req, res) => {
 //PUT ACTUALIZAR TAREA
 export const updatePost = async (req, res) => {
   try {
-    const updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    }).populate("user");
+    const updatedPost = await Post.findByIdAndUpdate(
+      req.params.id, 
+      req.body, 
+      {new: true}
+      ).populate("user");
 
-    if (!updatePost)
+    if (!updatedPost)
       return res.status(404).json({ message: "Tarea no encontrada" });
 
     res.status(200).json(updatedPost);

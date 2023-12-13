@@ -63,6 +63,16 @@ export const Register = () => {
           {errors.password && (
             <p className="text-red-400">El Password es requerido</p>
           )}
+          <input
+            type="URL"
+            accept="image/*"
+            {...register("avatar", { required: false })}
+            className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+            placeholder="Avatar"
+          />
+          {errors.username && (
+            <p className="text-red-400">Ingrese una imagen</p>
+          )}
           <button
             className="h-10 px-6 font-semibold rounded-md bg-blue-500 text-white my-3"
             type="submit"

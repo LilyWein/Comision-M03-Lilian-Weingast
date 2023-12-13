@@ -1,9 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import { usePosts } from "../context/PostContext";
-import { Link } from "react-router-dom";
+
 
 export const PostCard = ({ post }) => {
-  const { deletePost } = usePosts();
- 
+  const { deletePost} = usePosts();
+  const navigate = useNavigate();
+  
+  const redirigir = (id) =>{
+   navigate(`/EditPostPage/${id}`)
+  };
+
   return (
     <div className="bg-gray-500  w-full p-10 rounded-md">
       <header className="text-center mb-4">
@@ -26,19 +32,24 @@ export const PostCard = ({ post }) => {
       <div className="flex justify-between">
         <div>
           <button
-            className="bg-gray-700  rounded-md px-2 py-1 mr-4"  
-            onClick={() => deletePost(post._id)}
-          >
-            Eliminar
+            className="bg-gray-700  rounded-md w-20 h-10 mr-4"  
+            onClick={() => deletePost(post._id)}>
+             Eliminar
           </button>
-          <Link className="bg-green-800 rounded-md px-2 py-1"  to={`/post/${post._id}`}>
-            Editar
-          </Link>
+          
+          <button      
+            className="bg-green-800 rounded-md w-20 h-10 px-5 py-2.5 mr-4" 
+            onClick={() => redirigir(post._id)}>
+              Editar
+          </button> 
         </div>
 
        <p> 
-        {new Date(post.date).toLocaleDateString()}
+         {new Date(post.date).toLocaleDateString()}
        </p>
+       {/* <p>
+            Autor: {post.user},
+  </p>*/}
       </div>
     </div>
        

@@ -6,7 +6,8 @@ export const Profile = () => {
   return (
     <>
       <Navbar />
-      <div>Profile</div>
+      <div>Perfil</div>
+
       {JSON.stringify(user, null, 3)}
     </>
   );

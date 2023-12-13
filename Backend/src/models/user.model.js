@@ -19,7 +19,7 @@ const userSchema = new Schema(
       unique: true,
     },
    
-   avatarURL: {
+   avatar: {
       type: String,
       required: false,
     },

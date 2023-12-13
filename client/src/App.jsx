@@ -24,6 +24,7 @@ export const App = () => {
               <Route path="/add-post" element={<PostFormPage />} />
               <Route path="/post/:id" element={<PostFormPage />} />
               <Route path="/profile" element={<Profile />} />
+              {/*<Route path="/EditPostPage/:id" element={<EditPostPage/>} />*/}
             </Route>
           </Routes>
         </Router>

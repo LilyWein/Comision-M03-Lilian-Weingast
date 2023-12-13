@@ -17,7 +17,10 @@ export const validateRegister = [
     .isLength({ min: 6 })
     .withMessage("Longitud mínima del password es de 6 caractéres"),
 
-  //body("avatarURL").isURL().withMessage("Por favor ingrese una imagen válida"),//
+  body("avatar")
+    .isURL()
+    .withMessage("Por favor ingrese una imagen válida"),
+  
 ];
 
 //VALIDACION DEL LOGIN

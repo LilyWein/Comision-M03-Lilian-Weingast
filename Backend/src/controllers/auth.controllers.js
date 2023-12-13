@@ -5,7 +5,7 @@ import { SECRET_TOKEN } from "../config/dotenv.js";
 import { createAccessToken } from "../middlewares/jwt.validation.js";
 
 export const register = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, avatar } = req.body;
 
   //validación del usuario
   const foundUser = await User.findOne({ email });
@@ -17,6 +17,7 @@ export const register = async (req, res) => {
       email,
       username,
       password: passwordHash,
+      avatar,
     });
 
     const savedUser = await newUser.save();
@@ -30,6 +31,7 @@ export const register = async (req, res) => {
       email: savedUser.email,
       createdAt: savedUser.createdAt,
       updatedAt: savedUser.updateAt,
+      avatar: savedUser.avatar,
     });
   } catch (error) {
     res
@@ -100,6 +102,7 @@ export const verifyToken = async (req, res) => {
       email: userFound.email,
       createdAt: userFound.createdAt,
       updatedAt: userFound.updatedAt,
+      avatar: userFound.avatar,
     });
   });
 };

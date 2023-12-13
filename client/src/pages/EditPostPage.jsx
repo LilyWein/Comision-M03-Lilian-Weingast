@@ -4,34 +4,33 @@ import { usePosts } from "../context/PostContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
-export const PostFormPage = () => {
+export const EditPostPage = () => {
   const { register, handleSubmit, setValue } = useForm();
-
-  const {post, createPost, getPostById, updatePost } = usePosts();
-  
+  const { getPostById, updatePost } = usePosts();
+  const navigate = useNavigate();
   const params = useParams();
+
   useEffect(() => {
     async function loadPost() {
       if (params.id) {
         const post = await getPostById(params.id);
-       
         setValue("title", post.title);
         setValue("description", post.description);
+        setValue("imageURL", post.imageURL);
       }
     }
     loadPost();
-  }, []);
+  }, [params.id, getPostById, setValue]);
 
-  const navigate = useNavigate();
-  const onSubmit = handleSubmit((data) => {
-   
-    if (params.id) {
-      updatePost(params.id, data);
-    } else {
-      createPost(data);
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      await updatePost(params.id, data);
+      navigate("/post");
+    } catch (error) {
+      console.error("Error updating post:", error);
     }
-    navigate("/post");
   });
+
   return (
     <div>
       <Navbar />
@@ -50,20 +49,19 @@ export const PostFormPage = () => {
             placeholder="Descripción"
             {...register("description")}
           ></textarea>
-
           <input
             className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
-            type="string"
+            type="text"
             placeholder="Imagen"
             {...register("imageURL")}
-            autoFocus
           />
 
           <button
             className="bg-green-800 rounded-md w-20 h-10 px-5 py-2.5 mr-4"
-            type="submit"> Guardar                 
+            type="submit"
+          >
+            Guardar
           </button>
-          
         </form>
       </div>
     </div>

@@ -4,7 +4,6 @@ import {
   deletePost,
   getAllPosts,
   getAllPostsByAutor,
-  getPostById,
   updatePost,
 } from "../controllers/post.controllers.js";
 import { authRequired } from "../middlewares/validateToken.js";

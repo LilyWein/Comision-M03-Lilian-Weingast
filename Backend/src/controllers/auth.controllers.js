@@ -28,6 +28,8 @@ export const register = async (req, res) => {
       id: savedUser.id,
       username: savedUser.username,
       email: savedUser.email,
+      createdAt: savedUser.createdAt,
+      updatedAt: savedUser.updateAt,
     });
   } catch (error) {
     res
@@ -74,9 +76,7 @@ export const profile = async (req, res) => {
       id: userFound._id,
       username: userFound.username,
       email: userFound.email,
-      createdAt: userFound.createdAt,
-      updatedAt: userFound.updatedAt,
-    });
+      });
   
   } catch (error) {}
 };
@@ -98,6 +98,8 @@ export const verifyToken = async (req, res) => {
       id: userFound._id,
       username: userFound.username,
       email: userFound.email,
+      createdAt: userFound.createdAt,
+      updatedAt: userFound.updatedAt,
     });
   });
 };

@@ -11,7 +11,7 @@ const postSchema = new Schema(
       required: true,
     },
 
-    autor: {
+    user: {
       type: Schema.Types.ObjectId,
       ref: "User",
       required: false,
@@ -32,7 +32,13 @@ const postSchema = new Schema(
       type: Date,
       default: Date.now,
     },
-           
+
+    updatedAt:{
+      type: Date,
+      default: null,
+    },
+
+              
   },
   
   {

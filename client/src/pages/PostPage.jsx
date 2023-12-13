@@ -5,11 +5,11 @@ import { PostCard } from "../components/PostCard";
 
 export const PostPage = () => {
   
-  const { getAllPost, post } = usePosts();
+  const { getPostById, post } = usePosts();
 
   
   useEffect(() => {
-    getAllPost();
+    getPostById();
   }, []);
 
   if (post.length === 0)

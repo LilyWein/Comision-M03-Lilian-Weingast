@@ -10,7 +10,7 @@ export const PostCard = ({ post }) => {
       <h1 className="text-2xl font-semibold text-white">{post.title}</h1>
       <div className="flex gap-x-2 items-center"></div>
       <img
-        src = {`https://ruta-del-servidor.com/${post.imageURL}`}
+        src = {`${post.imageURL}`}
         alt=""
       />
       </header>

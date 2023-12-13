@@ -1,16 +1,33 @@
 import Post from "../models/post.model.js";
 
 
+
 export const getAllPosts = async (req, res) => {
   try {
    
+    const allPosts = await Post.find()
+    res.status(200).json(allPosts);
+  } catch (error) {
+    console.log(error)
+    return res
+      .status(400)
+      .json({ message: "Error al buscar todas las tareas", error });
+  }
+};
+
+export const getAllPostsByAutor = async (req, res) => {
+  try {
+   
+    
     const allPosts = await Post.find({
       
       user: req.user.id,
      
     }).populate("user"); 
+    console.log(allPosts)
     res.status(200).json(allPosts);
   } catch (error) {
+    console.log(error)
     return res
       .status(400)
       .json({ message: "Error al buscar todas las tareas", error });
@@ -42,7 +59,8 @@ export const createPost = async (req, res) => {
       title,
       description,
       imageURL,
-      /*autor: req.user.username,*/
+      user:req.user.id
+    
       });
 
     const savedPost = await newPost.save();

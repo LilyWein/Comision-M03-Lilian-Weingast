@@ -10,26 +10,28 @@ const taskSchema = new Schema(
       type: String,
       required: true,
     },
+
+     user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    imagenURL: {
+      type: String,
+      required: true,
+    },
+    
     completed: {
       type: Boolean,
       required: true,
     },
 
-    /*imagen: {
-      type: String,
-      required: true,
-    },*/
-
-    date: {
+    createdAt: {
       type: Date,
       default: Date.now,
     },
     
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
+   
 
       
   },

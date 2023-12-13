@@ -27,7 +27,7 @@ export const TaskProvider = ({ children }) => {
   //Buscar
   const getAllTask = async () => {
     const res = await getTaskReq();
-    // console.log(res);
+    
     try {
       setTask(res.data);
     } catch (error) {

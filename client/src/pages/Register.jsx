@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 export const Register = () => {
   const {
@@ -12,6 +13,7 @@ export const Register = () => {
 
   const { signup, isAuth, errors: authErrors } = useAuth();
  
+//hook para redireccionar a otra pagina
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -23,6 +25,8 @@ export const Register = () => {
    signup(values);
   });
   return (
+    <>
+    <Navbar/>
     <div className="flex h-screen items-center justify-center">
       <div className="bg-zinc-900 max-w-md p-8 rounded-md">
         {/* FORMULARIO */}
@@ -80,5 +84,6 @@ export const Register = () => {
         </p>
       </div>
     </div>
+    </>
   );
 };

@@ -23,9 +23,8 @@ export const TaskPage = () => {
   return (
     <>
       <Navbar />
-      <h1>Posteos</h1>
-      
-      <div className="grid grid-cols-3 gap-2">
+          
+      <div className="grid grid-cols-2 gap-2">
         {task.map((task, i) => (
           <TaskCard task={task} key={i} />
         ))}

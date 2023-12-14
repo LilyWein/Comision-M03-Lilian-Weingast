@@ -7,15 +7,25 @@ import { Link } from "react-router-dom";
 export const PostCard = ({ post }) => {
   const { register, handleSubmit} = useForm();
   const { deletePost, createComent, getComentById, comment } = usePosts();
-
+  const [comments, setComments] = useState([]);
+  
   useEffect(() => {
-    getComentById(post._id)
-  }, []);
+    const fetchData = async () => {
+      try {
+        const commentsData = await getComentById(post._id);
+        setComments(commentsData);
+      } catch (error) {
+        console.error("Error al obtener comentarios:", error);
+      }
+    };
+
+    fetchData();
+  }, [post._id, getComentById]);
 
   const navigate = useNavigate();
   
   const redirigir = (id) =>{
-   navigate(`/EditPostPage/${id}`)
+   navigate(`/post/${id}`)
   };
 
   const onSubmit = handleSubmit((data) => {
@@ -25,6 +35,7 @@ export const PostCard = ({ post }) => {
     }
     createComent(data);
     navigate("/post");
+    window.location.reload();
   });
 
   return (
@@ -72,7 +83,7 @@ export const PostCard = ({ post }) => {
        <p> 
          {new Date(post.date).toLocaleDateString()}
        </p>
-     </div>  
+      </div>  
        
     <div>
    {/*} <button      

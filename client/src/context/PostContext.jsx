@@ -3,6 +3,7 @@ import {
   createPostReq,
   getPostReq,
   deletePostReq,
+  getPostByIdReqa,
   getPostByIdReq,
   updatePostReq,
 } from "../api/post.js";
@@ -32,7 +33,6 @@ export const PostProvider = ({ children }) => {
   //Buscar
   const getAllPost = async () => {
     const res = await getPostReq();
-    
     try {
       setPost(res.data);
     } catch (error) {
@@ -44,13 +44,21 @@ export const PostProvider = ({ children }) => {
   const deletePost = async (id) => {
     try {
       const res = await deletePostReq(id);
-      // console.log(res);
       if (res.status === 200) setPost(post.filter((post) => post._id !== id));
     } catch (error) {
       console.log(error);
     }
   };
 
+  const getPostByIda = async (id) => {
+    try {
+      const res = await getPostByIdReqa(id);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
   //Buscar por Id
   const getPostById = async (id) => {
     try {
@@ -74,8 +82,7 @@ export const PostProvider = ({ children }) => {
   const getComentById = async (id) => {
     try {
       const res = await getCommentByIdReq(id);
-  
-      setComment(res.data);
+      return(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -96,6 +103,7 @@ export const PostProvider = ({ children }) => {
         getAllPost,
         deletePost,
         getPostById,
+        getPostByIda,
         updatePost,
         getComentById,
         createComent,

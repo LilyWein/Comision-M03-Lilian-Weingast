@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { usePosts } from "../context/PostContext";
 import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const PostComment = ({ post_id }) => {
   const { register, handleSubmit} = useForm();

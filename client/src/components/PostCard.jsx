@@ -42,7 +42,7 @@ export const PostCard = ({ post }) => {
            width={300}
          />
         
-        <p className="flex-1">{post.description}</p>
+        <p className="flex- items-start ">{post.description}</p>
       </div>
 
       
@@ -59,6 +59,14 @@ export const PostCard = ({ post }) => {
             onClick={() => redirigir(post._id)}>
               Editar
           </button> 
+          <Link
+            to="/CommentPage"
+            className=" bg-gray-500 border-2 text-center rounded-md p-2 m-30 w-full "
+          >
+           Comentar
+          </Link>
+
+
         </div>
 
        <p> 
@@ -72,12 +80,7 @@ export const PostCard = ({ post }) => {
        onClick={() => redirigir(post._id)}>
         
   </button>*/ }
-      <Link
-        to="/CommentPage"
-        className=" bg-gray-500 border-2 rounded-md w-full h-8 px-5 py-3 m-2 "
-          >
-         Comentar
-      </Link>
+     
     </div>
    {/* <div>
       {comment.map((singleComment, i) => (

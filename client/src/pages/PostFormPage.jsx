@@ -2,33 +2,44 @@ import { useForm } from "react-hook-form";
 import Navbar from "../components/Navbar";
 import { usePosts } from "../context/PostContext";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 
 export const PostFormPage = () => {
   const { register, handleSubmit, setValue } = useForm();
 
-  const {post, createPost, getPostById, updatePost } = usePosts();
+  const {createPost, getPostByIda, updatePost } = usePosts();
+
+
+  const { id } = useParams();
   
-  const params = useParams();
   useEffect(() => {
-    async function loadPost() {
-      if (params.id) {
-        const post = await getPostById(params.id);
-       
-        setValue("title", post.title);
-        setValue("description", post.description);
+    const fetchData = async () => {
+      if (id) {
+        try {
+          const postData = await getPostByIda(id);
+          setValue("title", postData.title);
+          setValue("description", postData.description);
+          setValue("imageURL", postData.imageURL);
+        } catch (error) {
+          console.error("Error al obtener el post:", error);
+        }
       }
-    }
-    loadPost();
-  }, []);
+      else{
+        setValue("title", "");
+        setValue("description", "");
+        setValue("imageURL", "");
+      }
+    };
+    fetchData();
+  }, [id, getPostByIda, setValue]);
 
   const navigate = useNavigate();
   const onSubmit = handleSubmit((data) => {
-   
-    if (params.id) {
-      updatePost(params.id, data);
+    if (id) {
+      updatePost(id,data)
     } else {
-      createPost(data);
+
+      createPost(data); 
     }
     navigate("/post");
   });

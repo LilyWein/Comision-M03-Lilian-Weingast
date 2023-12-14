@@ -1,14 +1,42 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { usePosts } from "../context/PostContext";
-
+import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const PostCard = ({ post }) => {
-  const { deletePost} = usePosts();
+  const { register, handleSubmit} = useForm();
+  const { deletePost, createComent, getComentById, comment } = usePosts();
+  const [comments, setComments] = useState([]);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const commentsData = await getComentById(post._id);
+        setComments(commentsData);
+      } catch (error) {
+        console.error("Error al obtener comentarios:", error);
+      }
+    };
+
+    fetchData();
+  }, [post._id, getComentById]);
+
   const navigate = useNavigate();
   
   const redirigir = (id) =>{
-   navigate(`/EditPostPage/${id}`)
+   navigate(`/post/${id}`)
   };
+
+  const onSubmit = handleSubmit((data) => {
+    data = {
+      ...data,
+      postid: post._id
+    }
+    createComent(data);
+    navigate("/post");
+    window.location.reload();
+  });
 
   return (
     <div className="bg-gray-500  w-full p-10 rounded-md">
@@ -25,33 +53,76 @@ export const PostCard = ({ post }) => {
            width={300}
          />
         
-        <p className="flex-1">{post.description}</p>
+        <p className="flex- items-start ">{post.description}</p>
       </div>
 
       
       <div className="flex justify-between">
         <div>
           <button
-            className="bg-gray-700  rounded-md w-20 h-10 mr-4"  
+            className="bg-gray-700  rounded-md w-20 h-10 m-3 "  
             onClick={() => deletePost(post._id)}>
              Eliminar
           </button>
           
           <button      
-            className="bg-green-800 rounded-md w-20 h-10 px-5 py-2.5 mr-4" 
+            className="bg-green-800 rounded-md w-20 h-10 px-5 py-2.5 m-2" 
             onClick={() => redirigir(post._id)}>
               Editar
           </button> 
+          <Link
+            to="/CommentPage"
+            className=" bg-gray-500 border-2 text-center rounded-md p-2 m-30 w-full "
+          >
+           Comentar
+          </Link>
+
+
         </div>
 
        <p> 
          {new Date(post.date).toLocaleDateString()}
        </p>
-       {/* <p>
-            Autor: {post.user},
-  </p>*/}
-      </div>
-    </div>
+      </div>  
        
-  );
+    <div>
+   {/*} <button      
+       className="bg-gray-600 rounded-md w-full h-10 px-5 py-2.5 m-2" 
+       onClick={() => redirigir(post._id)}>
+        
+  </button>*/ }
+     
+    </div>
+   {/* <div>
+      {comment.map((singleComment, i) => (
+         <div className= "bg-gray-500  w-full p-10 rounded-md" key={i}>
+           <p className="text-2xl">{singleComment.autor}</p>
+           <p className="text-2xl">{singleComment.description}</p>
+           <p className="text-2xl">{singleComment.date}</p>
+         </div>
+        ))}
+    </div>
+
+    <div className="bg-zinc-800 max-w-md w-full mt-3 p-10 rounded-md">
+      <form onSubmit={onSubmit}>
+        <input
+          className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+          type="text"
+          rows="3"
+          placeholder="Descripcion"
+          {...register("description")}
+          autoFocus
+        /> 
+        <button
+          className="flex h-8 w= 8 px-6 text-align:center font-semibold rounded-md bg-green-800 text-white my-5"
+          type="submit"
+        >
+          Guardar
+        </button>
+      </form>
+    </div>*/}
+     
+      </div>
+       
+);
 };

@@ -3,6 +3,7 @@ import {
   createPost,
   deletePost,
   getAllPosts,
+  getPostById,
   getAllPostsByAutor,
   updatePost,
 } from "../controllers/post.controllers.js";
@@ -10,7 +11,8 @@ import { authRequired } from "../middlewares/validateToken.js";
 
 const routes = Router();
 
-routes.get("/post", authRequired, getAllPosts);
+routes.get("/post", getAllPosts);
+routes.get("/postbyid/:id", authRequired, getPostById);
 routes.get("/post/:id", authRequired, getAllPostsByAutor);
 routes.post("/post", authRequired, createPost);
 routes.delete("/post/:id", authRequired, deletePost);

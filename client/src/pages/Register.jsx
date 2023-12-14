@@ -64,7 +64,7 @@ export const Register = () => {
             <p className="text-red-400">El Password es requerido</p>
           )}
           <input
-            type="URL"
+            type="URL" 
             accept="image/*"
             {...register("avatar", { required: false })}
             className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"

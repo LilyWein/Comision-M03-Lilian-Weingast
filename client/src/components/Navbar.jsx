@@ -16,7 +16,8 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
-  const {currentUser, signout } = useAuth();
+  const {currentUser, signout, user } = useAuth();
+
   return (
     <Disclosure as="nav" className="bg-lightgray-800">
       {({ open }) => (

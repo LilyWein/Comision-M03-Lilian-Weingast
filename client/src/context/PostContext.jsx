@@ -74,6 +74,7 @@ export const PostProvider = ({ children }) => {
   const getComentById = async (id) => {
     try {
       const res = await getCommentByIdReq(id);
+  
       setComment(res.data);
     } catch (error) {
       console.log(error);

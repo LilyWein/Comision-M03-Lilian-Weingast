@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { usePosts } from "../context/PostContext";
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const PostCard = ({ post }) => {
   const { register, handleSubmit} = useForm();
@@ -49,13 +49,13 @@ export const PostCard = ({ post }) => {
       <div className="flex justify-between">
         <div>
           <button
-            className="bg-gray-700  rounded-md w-20 h-10 mr-4"  
+            className="bg-gray-700  rounded-md w-20 h-10 m-3 "  
             onClick={() => deletePost(post._id)}>
              Eliminar
           </button>
           
           <button      
-            className="bg-green-800 rounded-md w-20 h-10 px-5 py-2.5 mr-4" 
+            className="bg-green-800 rounded-md w-20 h-10 px-5 py-2.5 m-2" 
             onClick={() => redirigir(post._id)}>
               Editar
           </button> 
@@ -64,36 +64,51 @@ export const PostCard = ({ post }) => {
        <p> 
          {new Date(post.date).toLocaleDateString()}
        </p>
-       <div>
+     </div>  
+       
+    <div>
+   {/*} <button      
+       className="bg-gray-600 rounded-md w-full h-10 px-5 py-2.5 m-2" 
+       onClick={() => redirigir(post._id)}>
+        
+  </button>*/ }
+      <Link
+        to="/CommentPage"
+        className=" bg-gray-500 border-2 rounded-md w-full h-8 px-5 py-3 m-2 "
+          >
+         Comentar
+      </Link>
+    </div>
+   {/* <div>
       {comment.map((singleComment, i) => (
-        <div key={i}>
-          <p className="text-2xl">{singleComment.autor}</p>
-          <p className="text-2xl">{singleComment.description}</p>
-          <p className="text-2xl">{singleComment.date}</p>
-        </div>
-      ))}
+         <div className= "bg-gray-500  w-full p-10 rounded-md" key={i}>
+           <p className="text-2xl">{singleComment.autor}</p>
+           <p className="text-2xl">{singleComment.description}</p>
+           <p className="text-2xl">{singleComment.date}</p>
+         </div>
+        ))}
     </div>
 
-      <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md">
-        <form onSubmit={onSubmit}>
-          <input
-            className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
-            type="text"
-            rows="3"
-            placeholder="Descripcion"
-            {...register("description")}
-            autoFocus
-          /> 
-          <button
-            className="flex h-10 px-6 text-align:center font-semibold rounded-md bg-green-900 text-white my-5"
-            type="submit"
-          >
-            Guardar
-          </button>
-        </form>
+    <div className="bg-zinc-800 max-w-md w-full mt-3 p-10 rounded-md">
+      <form onSubmit={onSubmit}>
+        <input
+          className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+          type="text"
+          rows="3"
+          placeholder="Descripcion"
+          {...register("description")}
+          autoFocus
+        /> 
+        <button
+          className="flex h-8 w= 8 px-6 text-align:center font-semibold rounded-md bg-green-800 text-white my-5"
+          type="submit"
+        >
+          Guardar
+        </button>
+      </form>
+    </div>*/}
+     
       </div>
-      </div>
-    </div>
        
-  );
+);
 };

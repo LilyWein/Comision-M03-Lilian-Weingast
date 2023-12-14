@@ -1,7 +1,18 @@
 import {Schema, model} from "mongoose"
 
 const commentSchema = new Schema ({
-    user:{
+    
+    postid:{
+        type: Schema.Types.ObjectId,
+        required: true,
+    },
+
+    date: {
+        type: Date,
+        default: Date.now,
+    },
+
+    autor:{
         type: Schema.Types.ObjectId,
         ref: "User",
         required: true,

@@ -6,6 +6,10 @@ import {
   getPostByIdReq,
   updatePostReq,
 } from "../api/post.js";
+import {
+  getCommentByIdReq,
+  createComentReq,
+} from "../api/comments.js"
 
 const PostContext = createContext();
 
@@ -17,6 +21,7 @@ export const usePosts = () => {
 
 export const PostProvider = ({ children }) => {
   const [post, setPost] = useState([]);
+  const [comment,setComment] = useState([]);
 
   //Crear tarea
   const createPost = async (post) => {
@@ -65,15 +70,34 @@ export const PostProvider = ({ children }) => {
     }
   };
 
+  //Buscar por Id
+  const getComentById = async (id) => {
+    try {
+      const res = await getCommentByIdReq(id);
+      setComment(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }; 
+
+    //Crear tarea
+    const createComent = async (comment) => {
+      
+      const res = await createComentReq(comment);
+    };
+
   return (
     <PostContext.Provider
       value={{
         post,
+        comment,
         createPost,
         getAllPost,
         deletePost,
         getPostById,
         updatePost,
+        getComentById,
+        createComent,
       }}
     >
       {children}

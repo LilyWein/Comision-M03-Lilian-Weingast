@@ -1,14 +1,31 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { usePosts } from "../context/PostContext";
-
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const PostCard = ({ post }) => {
-  const { deletePost} = usePosts();
+  const { register, handleSubmit} = useForm();
+  const { deletePost, createComent, getComentById, comment } = usePosts();
+
+  useEffect(() => {
+    getComentById(post._id)
+  }, []);
+
   const navigate = useNavigate();
   
   const redirigir = (id) =>{
    navigate(`/EditPostPage/${id}`)
   };
+
+  const onSubmit = handleSubmit((data) => {
+    data = {
+      ...data,
+      postid: post._id
+    }
+    createComent(data);
+    navigate("/post");
+  });
 
   return (
     <div className="bg-gray-500  w-full p-10 rounded-md">
@@ -47,9 +64,34 @@ export const PostCard = ({ post }) => {
        <p> 
          {new Date(post.date).toLocaleDateString()}
        </p>
-       {/* <p>
-            Autor: {post.user},
-  </p>*/}
+       <div>
+      {comment.map((singleComment, i) => (
+        <div key={i}>
+          <p className="text-2xl">{singleComment.autor}</p>
+          <p className="text-2xl">{singleComment.description}</p>
+          <p className="text-2xl">{singleComment.date}</p>
+        </div>
+      ))}
+    </div>
+
+      <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md">
+        <form onSubmit={onSubmit}>
+          <input
+            className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+            type="text"
+            rows="3"
+            placeholder="Descripcion"
+            {...register("description")}
+            autoFocus
+          /> 
+          <button
+            className="flex h-10 px-6 text-align:center font-semibold rounded-md bg-green-900 text-white my-5"
+            type="submit"
+          >
+            Guardar
+          </button>
+        </form>
+      </div>
       </div>
     </div>
        

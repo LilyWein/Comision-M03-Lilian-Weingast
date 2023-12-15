@@ -6,9 +6,8 @@ export const settingDotEnvDB= () => {
   return {
     port: process.env.PORT,
     db: {
-      host: process.env.DB_HOST || 'localhost',
-      uri: process.env.MONGO_URI || 'mongodb://localhost:27017/',
-      databaseName: process.env.DATABASE_NAME || 'proyectofinal',
+      uri: process.env.MONGO_URI,
+      databaseName: process.env.DATABASE_NAME,
     },
   };
 };

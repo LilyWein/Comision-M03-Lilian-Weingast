@@ -23,6 +23,6 @@ app.use(
 app.use(authroutes);
 app.use(postRoutes);
 app.use(commentRoutes);
-const PORT = settingDotEnvDB().port || 5000;
+const PORT = settingDotEnvDB().port;
 
 app.listen(PORT, () => console.log(`Servidor en puerto ${PORT}`));

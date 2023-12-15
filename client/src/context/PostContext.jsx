@@ -97,10 +97,9 @@ export const PostProvider = ({ children }) => {
     };
 
   //Actualizar
-  const updateComment = async (id, comment) => {
+  const updateComment = async (comment) => {
     try {
-      console.log(comment)
-      const res = await updateComentReq(id, comment);
+      const res = await updateComentReq(comment.Id, comment);
       console.log(res)
     } catch (error) {
       console.log(error);

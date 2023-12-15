@@ -19,7 +19,7 @@ export default function Navbar() {
   const {currentUser, signout, user } = useAuth();
 
   return (
-    <Disclosure as="nav" className="bg-gray-400 fixed w-full top-0">
+    <Disclosure as="nav" className="bg-gray-400 bg-opacity-50 fixed w-full top-0">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -40,7 +40,7 @@ export default function Navbar() {
 
               <div className="flex items-center justify-between h-16">
                  
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 p-4">
                   {/*Logo*/}
                   <img
                     className="h-8 w-auto"
@@ -58,8 +58,8 @@ export default function Navbar() {
                         to={item.href}
                         className={classNames(
                           item.current
-                            ? "bg-gray-400 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                            ? "bg-gray-400 bg-opacity-50 text-white"
+                            : "text-gray-400 hover:bg-gray-700 hover:text-white",
                           "rounded-md px-3 py-2 text-sm font-medium"
                         )}
                         aria-current={item.current ? "page" : undefined}
@@ -71,7 +71,7 @@ export default function Navbar() {
                 </div>
               </div>
 
-              <h1 className="text-white text-xl font-bold">Tu Experiencia en viajes</h1>
+              <h1 className="text-stone-700  italic text-xl font-bold">Tu Experiencia en viajes</h1>
 
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <Menu as="div" className="relative ml-3">

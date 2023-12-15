@@ -40,7 +40,13 @@ export const PostCard = ({ post }) => {
   };
 
   const editComment = async (id) => {
-    let rsp = await updateComment(id, changeComment)
+
+    let comment = {
+      Id : id,
+      description : changeComment
+    }
+
+    let rsp = await updateComment(comment)
 
     window.location.reload();
 }
@@ -115,12 +121,12 @@ const deleteComm = async (id) => {
 
       </div>
 
-      <div className="w-full max-w-md mx-auto">
+      <div className="w-full ">
       <button
         onClick={toggleAccordion}
-        className="w-full py-2 px-4 text-left bg-gray-200 hover:bg-gray-300 focus:outline-none"
+        className="w-full py-2 px-4 text-left bg-gray-500 hover:bg-gray-600 text-gray-900 font-bold focus:outline-none"
       >
-        Desplegar menú
+        Comentarios
       </button>
       {isOpen && (
         <div className="border rounded mt-2">
@@ -148,24 +154,23 @@ const deleteComm = async (id) => {
             { 
               isOnUpdate === singleComment._id ?
               <>
-                <input type="text" className="flex items start-0 w-full bg-stone-50 text-black  px-2 py-2 rounded-md my-2" onChange={e => setchangeComment(e.target.value)}  />
+                <input type="text" className="flex items start-0 w-full bg-stone-50 text-black  px-2 py-2 rounded-md my-2" onChange={e => setchangeComment(e.target.value)} />
                 <button className="bg-gray-700  rounded-md w-20 h-10 m-3" onClick={()=>editComment(singleComment._id)} >aceptar</button>
                 <button className="bg-gray-700  rounded-md w-20 h-10 m-3" onClick={()=>setisOnUpdate(0)}>cancelar</button>   
               </>
               :
               <>
                 <p className="text-2xl">{singleComment.description}</p>
-                <button className="bg-gray-700  rounded-md w-20 h-10 m-3" onClick={()=>setisOnUpdate(singleComment._id)} >editar</button>
-                <button className="bg-gray-700  rounded-md w-20 h-10 m-3" onClick={()=>deleteComm(singleComment._id)}>eliminar</button>                   
+                {
+                  singleComment.autor === user.username ?
+                  <>
+                    <button className="bg-gray-700  rounded-md w-20 h-10 m-3" onClick={()=>setisOnUpdate(singleComment._id)} >editar</button>
+                    <button className="bg-gray-700  rounded-md w-20 h-10 m-3" onClick={()=>deleteComm(singleComment._id)}>eliminar</button>                   
+                  </>:null
+                }
                </>
             }
             <p className="text-2xl">{singleComment.date}</p>
-            
-            <button
-              className="bg-green-800 rounded-md w-20 h-10 px-5 py-2.5 m-2"
-              onClick={() => redirigir(post._id)}>
-              Editar
-            </button>
           </div>
         ))}
         </div>

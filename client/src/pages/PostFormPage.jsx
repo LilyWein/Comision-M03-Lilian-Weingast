@@ -46,24 +46,24 @@ export const PostFormPage = () => {
   return (
     <div>
       <Navbar />
-      <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md">
+      <div className="bg-orange-200 w-full p-10 rounded-md mt-20">
         <form onSubmit={onSubmit}>
           <input
-            className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+            className="w-full bg-orange-50 text-gray-700 px-2 py-2 rounded-md my-2"
             type="text"
             placeholder="Titulo"
             {...register("title")}
             autoFocus
           />
           <textarea
-            className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+            className="w-full bg-orange-50 text-gray-700 px-2 py-2 rounded-md my-2"
             rows="3"
             placeholder="Descripción"
             {...register("description")}
           ></textarea>
 
           <input
-            className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+            className="w-full bg-orange-50 text-gray-700 px-2 py-2 rounded-md my-2"
             type="string"
             placeholder="Imagen"
             {...register("imageURL")}
@@ -71,7 +71,7 @@ export const PostFormPage = () => {
           />
 
           <button
-            className="bg-green-800 rounded-md w-20 h-10 px-5 py-2.5 mr-4"
+            className="bg-orange-700 text-gray-900 font-bold bg-opacity-80 rounded-md w-20 h-10 mr-4"
             type="submit"> Guardar                 
           </button>
           

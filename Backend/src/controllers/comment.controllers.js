@@ -70,14 +70,11 @@ export const deleteComment = async (req, res) => {
 //PUT ACTUALIZAR TAREA
 export const updateComment = async (req, res) => {
   try {
-    console.log(req)
     const updatedComment = await Comment.findByIdAndUpdate(
       req.params.id, 
       req.body, 
       {new: true}
-      ).populate("user");
-      console.log(updatedComment)
-      console.log(req.body)
+      );
     if (!updatedComment)
       return res.status(404).json({ message: "Tarea no encontrada" });
 

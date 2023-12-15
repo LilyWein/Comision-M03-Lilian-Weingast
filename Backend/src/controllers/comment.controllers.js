@@ -7,23 +7,11 @@ export const getCommentById = async (req, res) => {
   try {
     const commentFound = await Comment.find({
         postid : id
-    });
-    const userIds = commentFound.map(comment => comment.autor);
-    const username = await User.findById(userIds);
+    }).populate("autor");
 
-    const commentsWithUsernames = commentFound.map(comment => {
-      const user = username ? username.username : null;
-      const formattedDate = comment.date.toISOString().split('T')[0].split('-').reverse().join('/');
-      return {
-        ...comment.toObject(),
-        autor: user,
-        date: formattedDate
-      };
-    });
-
-    if (!commentsWithUsernames)
+    if (!commentFound)
       return res.status(404).json({ message: "No se encontró el comentario" });
-    res.status(200).json(commentsWithUsernames);
+    res.status(200).json(commentFound);
   } catch (error) {
     console.log(error)
     return res

@@ -58,7 +58,7 @@ export default function Navbar() {
                         to={item.href}
                         className={classNames(
                           item.current
-                            ? "bg-gray-400 bg-opacity-50 text-white"
+                            ? "bg-gray-400 bg-opacity-50 text-stone-600 justify-items-center"
                             : "text-gray-400 hover:bg-gray-700 hover:text-white",
                           "rounded-md px-3 py-2 text-sm font-medium"
                         )}
@@ -71,7 +71,7 @@ export default function Navbar() {
                 </div>
               </div>
 
-              <h1 className="text-stone-700  italic text-xl font-bold">Tu Experiencia en viajes</h1>
+              <h1 className="text-stone-700  italic antialiased text-xl font-bold">Tu Experiencia en viajes</h1>
 
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <Menu as="div" className="relative ml-3">

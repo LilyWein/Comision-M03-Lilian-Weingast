@@ -5,7 +5,7 @@ import Post from "../models/post.model.js";
 export const getAllPosts = async (req, res) => {
   try {
    
-    const allPosts = await Post.find()
+    const allPosts = await Post.find().populate("user");
     res.status(200).json(allPosts);
   } catch (error) {
     console.log(error)

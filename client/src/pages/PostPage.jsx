@@ -16,7 +16,10 @@ export const PostPage = () => {
     return (
       <>
         <Navbar />
-        <h1>No Tiene Posteos</h1>
+        <div className="mt-20 text-">
+          <h1>No Tiene Posteos</h1>
+        </div>
+        
       </>
     );
 

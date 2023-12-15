@@ -23,6 +23,7 @@ export const PostCard = ({ post }) => {
     const fetchData = async () => {
       try {
         const commentsData = await getComentById(post._id);
+        console.log(commentsData)
         setComments(commentsData);
       } catch (error) {
         console.error("Error al obtener comentarios:", error);
@@ -86,7 +87,7 @@ const deleteComm = async (id) => {
       </div>
 
 
-      <div className="flex justify-between">
+      <div className="flex">
         {user?.id == post.user?._id || user?.id == post?.user ? (
           <div>
             <button
@@ -100,12 +101,6 @@ const deleteComm = async (id) => {
               onClick={() => redirigir(post._id)}>
               Editar
             </button>
-            <Link
-              to="/CommentPage"
-              className=" bg-gray-500 border-2 text-center rounded-md p-2 m-30 w-full "
-            >
-              Comentar
-            </Link>
 
 
           </div>
@@ -113,7 +108,7 @@ const deleteComm = async (id) => {
         <p>
           <img
             className="h-8 w-8 rounded-full"
-            src={user && user.avatar !== null && user.avatar !== undefined ? user.avatar : "https://media.istockphoto.com/id/1298261537/es/vector/marcador-de-posici%C3%B3n-del-icono-de-la-cabeza-del-perfil-del-hombre-en-blanco.jpg?s=612x612&w=0&k=20&c=e6fPb6CH61RvtxbSfhsVInccMuXXLEkKpV6aVGfywWo="}
+            src={post && post.user?.avatar !== null && post.user?.avatar !== undefined ? post.user?.avatar : "https://media.istockphoto.com/id/1298261537/es/vector/marcador-de-posici%C3%B3n-del-icono-de-la-cabeza-del-perfil-del-hombre-en-blanco.jpg?s=612x612&w=0&k=20&c=e6fPb6CH61RvtxbSfhsVInccMuXXLEkKpV6aVGfywWo="}
             alt=""
           />
           {post.user.username} <br /> {new Date(post.date).toLocaleDateString()}
@@ -129,11 +124,11 @@ const deleteComm = async (id) => {
         Comentarios
       </button>
       {isOpen && (
-        <div className="border rounded mt-2">
-                <div className="bg-stone-400 max-w-md w-full mt-3 p-3 rounded-md">
+        <div className="w-full">
+                <div className="bg-gray-600  w-full mt-3 p-3 rounded-md">
         <form onSubmit={onSubmit}>
           <input
-            className="flex items start-0 w-full bg-stone-50 text-black  px-2 py-2 rounded-md my-2"
+            className="flex w-full bg-stone-50 text-black  px-2 py-2 rounded-md my-2"
             type="text"
             rows="3"
             placeholder="Descripcion"
@@ -141,7 +136,7 @@ const deleteComm = async (id) => {
             autoFocus
           />
           <button
-            className="flex p-2 text-align:center font-semibold rounded-md bg-green-800 text-green-200  my-3"
+            className="flex p-2 text-align:center font-semibold rounded-md bg-gray-700 text-green-400  my-3"
             type="submit"
           >
             Guardar
@@ -150,7 +145,7 @@ const deleteComm = async (id) => {
       </div>
       {comments.map((singleComment, i) => (
           <div className="bg-gray-500  w-full p-10 rounded-md" key={i}>
-            <p className="text-2xl">{singleComment.autor}</p>
+            <p className="text-2xl">{singleComment.autor.username}</p>
             { 
               isOnUpdate === singleComment._id ?
               <>
@@ -162,7 +157,7 @@ const deleteComm = async (id) => {
               <>
                 <p className="text-2xl">{singleComment.description}</p>
                 {
-                  singleComment.autor === user.username ?
+                  singleComment.autor._id === user.id ?
                   <>
                     <button className="bg-gray-700  rounded-md w-20 h-10 m-3" onClick={()=>setisOnUpdate(singleComment._id)} >editar</button>
                     <button className="bg-gray-700  rounded-md w-20 h-10 m-3" onClick={()=>deleteComm(singleComment._id)}>eliminar</button>                   

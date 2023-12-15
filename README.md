@@ -14,15 +14,11 @@ Node.js y Express.js instalados en tu sistema.</p></div>
 <img src="https://cdn.icon-icons.com/icons2/2415/PNG/512/react_original_wordmark_logo_icon_146375.png" alt="React" width="150"/><p>Se necesita tambien la libreria React</p></div>
 </div>
 
-<img src="" alt="estructura del proyecto" width="150"/>
 
 ### Estructura del Proyecto
 •	/Backend: Contiene el código del servidor Express.
 
 •	/client: Contiene el código del cliente React Vite.
-
-
-<img src="" alt="inicio rapido" width="150"/>
 
 
 ### Inicio rápido
@@ -72,10 +68,6 @@ Node.js y Express.js instalados en tu sistema.</p></div>
 10. En la carpeta client: define la conexión con la Api en el archivo setCredentialAxios.js, definiendo el URL de la Api.
 
 
-
-<img src="" alt="ejecución" width="150"/>
-
-
 ### Ejecución:
 •	 Inicia el servidor Express desde la carpeta Backend
 
@@ -86,7 +78,6 @@ Node.js y Express.js instalados en tu sistema.</p></div>
     npm run dev
 
 
-<img src="" alt="imagen MongoDb" width="150"/>
 
 #### Puedes ingresar a la aplicación siguiendo el link que aparece en la terminal al inicializar client.
 

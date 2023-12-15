@@ -3,12 +3,14 @@ import { usePosts } from "../context/PostContext";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export const PostCard = ({ post }) => {
   const { register, handleSubmit} = useForm();
   const { deletePost, createComent, getComentById, comment } = usePosts();
   const [comments, setComments] = useState([]);
-  
+  const { user } = useAuth();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -58,6 +60,7 @@ export const PostCard = ({ post }) => {
 
       
       <div className="flex justify-between">
+      {user?.id === post.user?._id || user?.id === post?.user ? (
         <div>
           <button
             className="bg-gray-700  rounded-md w-20 h-10 m-3 "  
@@ -79,7 +82,7 @@ export const PostCard = ({ post }) => {
 
 
         </div>
-
+        ) : null}
        <p> 
          {new Date(post.date).toLocaleDateString()}
        </p>

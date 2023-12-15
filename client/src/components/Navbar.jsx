@@ -72,7 +72,7 @@ export default function Navbar() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src= {""}
+                        src= {user && user.avatar!== null && user.avatar!== undefined ? user.avatar: "https://media.istockphoto.com/id/1298261537/es/vector/marcador-de-posici%C3%B3n-del-icono-de-la-cabeza-del-perfil-del-hombre-en-blanco.jpg?s=612x612&w=0&k=20&c=e6fPb6CH61RvtxbSfhsVInccMuXXLEkKpV6aVGfywWo="}
                         alt=""
                       />
                     </Menu.Button>
@@ -86,17 +86,17 @@ export default function Navbar() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-gray-400 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
                           <Link
                             to="/profile"
                             className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
+                              active ? "bg-gray-300" : "",
+                              "block px-4 py-2 text-sm text-gray-700 font-bold"
                             )}
                           >
-                            Perfil
+                           Perfil
                           </Link>
                         )}
                       </Menu.Item>
@@ -106,8 +106,8 @@ export default function Navbar() {
                             onClick={() => signout()}
                             to="/login"
                             className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
+                              active ? "bg-gray-300" : "",
+                              "block px-4 py-2 text-sm text-gray-700 font-bold "
                             )}
                           >
                             Sign out

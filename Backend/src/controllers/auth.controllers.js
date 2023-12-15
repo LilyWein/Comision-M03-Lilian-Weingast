@@ -56,6 +56,8 @@ export const login = async (req, res) => {
       message: "Bienvenido!",
       username: userFound.username,
       avatar:userFound.avatar,
+      id: userFound._id,
+      email: userFound.email,
     });
   } catch (error) {
     res

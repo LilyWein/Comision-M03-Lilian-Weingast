@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from "../components/Navbar";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from 'react-router-dom';
 
 export const Profile = () => {
   const { user, updateProfile } = useAuth();
   const [editMode, setEditMode] = useState(false);
   const [editedUser, setEditedUser] = useState(user);
-  const navigate = useNavigate();
-
+  const [forceRefresh, setForceRefresh] = useState(false); 
+ 
   const handleEditMode = () => {
     if (editMode) {
       updateProfile(user.id,editedUser);
-      
+      setEditedUser(editedUser)
         }
     setEditMode(!editMode);
   };
 
-  useEffect( () =>{
-    navigate("/profile", {remplace : true})
-  },[handleEditMode]);
+  useEffect(() => {
+    if (forceRefresh) {
+      setEditedUser(user); 
+      setForceRefresh(false); 
+    }
+  }, [forceRefresh, user]);
 
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditedUser({ ...editedUser, [name]: value });

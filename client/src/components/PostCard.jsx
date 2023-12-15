@@ -67,9 +67,9 @@ export const PostCard = ({ post }) => {
   });
 
   return (
-    <div className="bg-gray-500  w-full p-10 rounded-md">
-      <header className="text-alignate-left mb-4">
-        <h1 className="text-2xl font-bold text-gray-100">{post.title}</h1>
+    <div className="bg-gray-500  w-full mt-5 px-3 rounded-md">
+      <header className="text-alignate-left mb-5">
+        <h1 className="text-2xl font-bold underline underline-offset-4 uppercase text-gray-950">{post.title}</h1>
 
         <div className="flex items-center mt-2"> {/* Contenedor flex para avatar y fecha */}
           <img
@@ -78,8 +78,8 @@ export const PostCard = ({ post }) => {
             alt=""
           />
           <div className="flex flex-col">
-            <p className="text-gray-200 font-semibold">{post.user.username}</p>
-            <p className="text-gray-300">{new Date(post.createdAt).toLocaleString('es-ES')}</p>
+            <p className="text-gray-300 font-semibold">{post.user.username}</p>
+            
           </div>
         </div>
       </header>
@@ -93,11 +93,16 @@ export const PostCard = ({ post }) => {
           width={300}
         />
 
-        <p className="flex- items-start text-gray-950">{post.description}</p>
+        <p className="flex-items-start text-sm text-gray-950">{post.description}</p>
       </div>
 
 
-      <div className="flex">
+      <div className="flex justify-end py-4">
+      <p className="text-gray-300">{new Date(post.createdAt).toLocaleString('es-ES')}</p>
+
+      </div>
+
+      <div className="flex justify-end">
         {user?.id == post.user?._id || user?.id == post?.user ? (
           <div>
 
@@ -108,7 +113,7 @@ export const PostCard = ({ post }) => {
             </button>
 
             <button
-              className="bg-gray-700 text-red-500  rounded-md w-20 h-10 m-3 "
+              className="bg-gray-700 text-red-500  rounded-md w-20 h-10 m-2 "
               onClick={() => deletePost(post._id)}>
               Eliminar
             </button>

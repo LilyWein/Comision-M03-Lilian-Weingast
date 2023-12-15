@@ -71,7 +71,7 @@ export const PostFormPage = () => {
           />
 
           <button
-            className=" bg-gray-700 text-green-400 font-bold bg-opacity-80 rounded-md w-20 h-10 mr-4"
+            className=" bg-gray-700 text-green-400 font-bold bg-opacity-80 rounded-md w-20 h-10 my-10 mr-4"
             type="submit"> Guardar                 
           </button>
           

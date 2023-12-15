@@ -9,3 +9,5 @@ export const loginRequest = (user) => axios.post(`/login`, user);
 
 //verificación del token
 export const verifyToken = () => axios.get(`/verifyToken`);
+
+export const updateProfileReq =  (id, user) => axios.put(`/profile/${id}`, user); 

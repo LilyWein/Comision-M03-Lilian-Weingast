@@ -3,12 +3,14 @@ import { usePosts } from "../context/PostContext";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export const PostCard = ({ post }) => {
   const { register, handleSubmit} = useForm();
   const { deletePost, createComent, getComentById, comment } = usePosts();
   const [comments, setComments] = useState([]);
-  
+  const { user } = useAuth();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,6 +22,7 @@ export const PostCard = ({ post }) => {
     };
 
     fetchData();
+
   }, [post._id, getComentById]);
 
   const navigate = useNavigate();
@@ -58,6 +61,7 @@ export const PostCard = ({ post }) => {
 
       
       <div className="flex justify-between">
+      {user?.id == post.user?._id || user?.id == post?.user ? (
         <div>
           <button
             className="bg-gray-700  rounded-md w-20 h-10 m-3 "  
@@ -79,10 +83,16 @@ export const PostCard = ({ post }) => {
 
 
         </div>
-
-       <p> 
-         {new Date(post.date).toLocaleDateString()}
+        ) : null}
+       <p>
+       <img
+         className="h-8 w-8 rounded-full"
+         src= {user && user.avatar!== null && user.avatar!== undefined ? user.avatar: "https://media.istockphoto.com/id/1298261537/es/vector/marcador-de-posici%C3%B3n-del-icono-de-la-cabeza-del-perfil-del-hombre-en-blanco.jpg?s=612x612&w=0&k=20&c=e6fPb6CH61RvtxbSfhsVInccMuXXLEkKpV6aVGfywWo="}
+         alt=""
+          />
+        {post.user.username} <br /> {new Date(post.date).toLocaleDateString()}
        </p>
+       
       </div>  
        
     <div>

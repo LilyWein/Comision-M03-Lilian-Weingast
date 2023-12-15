@@ -1,5 +1,5 @@
 import Comment from "../models/comment.model.js";
-
+import User from "../models/user.model.js";
 
 // Ver Comentario por ID
 export const getCommentById = async (req, res) => {
@@ -8,10 +8,22 @@ export const getCommentById = async (req, res) => {
     const commentFound = await Comment.find({
         postid : id
     });
-    
-    if (!commentFound)
+    const userIds = commentFound.map(comment => comment.autor);
+    const username = await User.findById(userIds);
+
+    const commentsWithUsernames = commentFound.map(comment => {
+      const user = username ? username.username : null;
+      const formattedDate = comment.date.toISOString().split('T')[0].split('-').reverse().join('/');
+      return {
+        ...comment.toObject(),
+        autor: user,
+        date: formattedDate
+      };
+    });
+
+    if (!commentsWithUsernames)
       return res.status(404).json({ message: "No se encontró el comentario" });
-    res.status(200).json(commentFound);
+    res.status(200).json(commentsWithUsernames);
   } catch (error) {
     console.log(error)
     return res

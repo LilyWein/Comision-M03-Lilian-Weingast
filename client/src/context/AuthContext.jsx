@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { registerReq, loginRequest, verifyToken } from "../api/auth";
+import { registerReq, loginRequest, verifyToken, updateProfileReq } from "../api/auth";
 import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
@@ -85,6 +85,14 @@ export const AuthProvider = ({ children }) => {
     verifyLogin();
   }, []);
 
+    const updateProfile = async (id, user) => {
+    try {
+      const res = await updateProfileReq(id, user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -94,6 +102,7 @@ export const AuthProvider = ({ children }) => {
         user,
         isAuth,
         errors,
+        updateProfile
       }}
     >
       {children}

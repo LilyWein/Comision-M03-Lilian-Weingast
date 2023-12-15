@@ -8,7 +8,6 @@ import { PostFormPage } from "./pages/PostFormPage";
 import { Profile } from "./pages/Profile";
 import { ProtectedRoutes } from "./routes/ProtectedRoutes";
 import { PostProvider } from "./context/PostContext";
-import { PostComment } from "./pages/CommentPage";
 
 
 export const App = () => {
@@ -25,7 +24,6 @@ export const App = () => {
               <Route path="/post" element={<PostPage />} />
               <Route path="/add-post" element={<PostFormPage />} />
               <Route path="/post/:id" element={<PostFormPage />} />
-              <Route path="/CommentPage" element={<PostComment />} />
               <Route path="/profile" element={<Profile />} />
             </Route>
           </Routes>

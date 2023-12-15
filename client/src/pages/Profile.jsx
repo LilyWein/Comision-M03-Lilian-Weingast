@@ -7,7 +7,7 @@ export const Profile = () => {
   const [editMode, setEditMode] = useState(false);
   const [editedUser, setEditedUser] = useState(user);
   const [forceRefresh, setForceRefresh] = useState(false); 
- 
+
   const handleEditMode = () => {
     if (editMode) {
       updateProfile(user.id,editedUser);
@@ -23,7 +23,7 @@ export const Profile = () => {
     }
   }, [forceRefresh, user]);
 
-  
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditedUser({ ...editedUser, [name]: value });

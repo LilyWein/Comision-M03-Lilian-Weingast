@@ -10,6 +10,8 @@ import {
 import {
   getCommentByIdReq,
   createComentReq,
+  deleteComentReq,
+  updateComentReq, 
 } from "../api/comments.js"
 
 const PostContext = createContext();
@@ -94,6 +96,26 @@ export const PostProvider = ({ children }) => {
       const res = await createComentReq(comment);
     };
 
+  //Actualizar
+  const updateComment = async (id, comment) => {
+    try {
+      console.log(comment)
+      const res = await updateComentReq(id, comment);
+      console.log(res)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+    //Eliminar
+    const deleteComment = async (id) => {
+      try {
+        const res = await deleteComentReq(id);
+        if (res.status === 200) setPost(post.filter((post) => post._id !== id));
+      } catch (error) {
+        console.log(error);
+      }
+    };
   return (
     <PostContext.Provider
       value={{
@@ -107,6 +129,8 @@ export const PostProvider = ({ children }) => {
         updatePost,
         getComentById,
         createComent,
+        deleteComment,
+        updateComment
       }}
     >
       {children}

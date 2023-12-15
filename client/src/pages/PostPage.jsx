@@ -24,7 +24,7 @@ export const PostPage = () => {
     <>
       <Navbar />
           
-      <div className="grid grid-cols-1 gap-2">
+      <div className="grid gap-2 mt-20">
         {post.map((post, i) => (
           <PostCard post={post} key={i} />
         ))}

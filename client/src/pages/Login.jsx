@@ -27,7 +27,7 @@ export const Login = () => {
     <>
     <Navbar/>
      <div className="flex h-screen items-center justify-center">
-       <div className="bg-zinc-900 max-w-md p-10 rounded-md">
+       <div className="bg-gray-600 max-w-md p-10 rounded-md">
          <h1 className="text-3xl text-center font-semibold mb-10">Login</h1>
           {loginErrors.map((err, i) => (
            <div key={i} className="bg-red-800 text-white">
@@ -41,7 +41,7 @@ export const Login = () => {
            <input
             type="email"
             {...register("email", { required: true })}
-            className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+            className="w-full bg-zinc-300 text-gray-950 px-4 py-2 rounded-md my-2"
             placeholder="Email"
            />
            {errors.email && (
@@ -50,14 +50,14 @@ export const Login = () => {
            <input
              type="password"
              {...register("password", { required: true })}
-             className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+             className="w-full bg-zinc-300 text-gray-950 px-4 py-2 rounded-md my-2"
              placeholder="Password"
            />
            {errors.password && (
              <p className="text-red-400">El Password es requerido</p>
            )}
            <button
-             className="h-10 px-6 font-semibold rounded-md bg-blue-500 text-white"
+             className="h-10 px-6 font-semibold rounded-md bg-gray-800 text-white"
              type="submit"
             >
              Login

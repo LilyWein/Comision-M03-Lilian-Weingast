@@ -7,7 +7,7 @@ export const getCommentById = async (req, res) => {
   try {
     const commentFound = await Comment.find({
         postid : id
-    }).populate("autor");
+    }).populate("autor").sort({date: -1});
 
     if (!commentFound)
       return res.status(404).json({ message: "No se encontró el comentario" });

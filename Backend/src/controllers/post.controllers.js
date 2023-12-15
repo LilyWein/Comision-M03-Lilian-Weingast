@@ -5,7 +5,7 @@ import Post from "../models/post.model.js";
 export const getAllPosts = async (req, res) => {
   try {
    
-    const allPosts = await Post.find().populate("user");
+    const allPosts = await Post.find().populate("user").sort({createdAt: -1});
     res.status(200).json(allPosts);
   } catch (error) {
     console.log(error)
@@ -23,7 +23,7 @@ export const getAllPostsByAutor = async (req, res) => {
       
       user: req.user.id,
      
-    }).populate("user"); 
+    }).populate("user").sort({createdAt: -1});; 
     console.log(allPosts)
     res.status(200).json(allPosts);
   } catch (error) {

@@ -111,7 +111,7 @@ const deleteComm = async (id) => {
             src={post && post.user?.avatar !== null && post.user?.avatar !== undefined ? post.user?.avatar : "https://media.istockphoto.com/id/1298261537/es/vector/marcador-de-posici%C3%B3n-del-icono-de-la-cabeza-del-perfil-del-hombre-en-blanco.jpg?s=612x612&w=0&k=20&c=e6fPb6CH61RvtxbSfhsVInccMuXXLEkKpV6aVGfywWo="}
             alt=""
           />
-          {post.user.username} <br /> {new Date(post.date).toLocaleDateString()}
+          {post.user.username} <br /> {new Date(post.date).toLocaleString('es-ES')}
         </p>
 
       </div>
@@ -145,7 +145,12 @@ const deleteComm = async (id) => {
       </div>
       {comments.map((singleComment, i) => (
           <div className="bg-gray-500  w-full p-10 rounded-md" key={i}>
-            <p className="text-2xl">{singleComment.autor.username}</p>
+            <img
+              className="h-8 w-8 rounded-full"
+              src={singleComment && singleComment.autor?.avatar !== null && singleComment.autor?.avatar !== undefined ? singleComment.autor?.avatar : "https://media.istockphoto.com/id/1298261537/es/vector/marcador-de-posici%C3%B3n-del-icono-de-la-cabeza-del-perfil-del-hombre-en-blanco.jpg?s=612x612&w=0&k=20&c=e6fPb6CH61RvtxbSfhsVInccMuXXLEkKpV6aVGfywWo="}
+              alt=""
+            />
+            <p className="text-2xl">{singleComment.autor?.username}</p>
             { 
               isOnUpdate === singleComment._id ?
               <>
@@ -157,7 +162,7 @@ const deleteComm = async (id) => {
               <>
                 <p className="text-2xl">{singleComment.description}</p>
                 {
-                  singleComment.autor._id === user.id ?
+                  singleComment.autor._id === user?.id ?
                   <>
                     <button className="bg-gray-700  rounded-md w-20 h-10 m-3" onClick={()=>setisOnUpdate(singleComment._id)} >editar</button>
                     <button className="bg-gray-700  rounded-md w-20 h-10 m-3" onClick={()=>deleteComm(singleComment._id)}>eliminar</button>                   
@@ -165,7 +170,7 @@ const deleteComm = async (id) => {
                 }
                </>
             }
-            <p className="text-2xl">{singleComment.date}</p>
+            <p className="text-2xl">{new Date(singleComment.date).toLocaleString('es-ES')}</p>
           </div>
         ))}
         </div>

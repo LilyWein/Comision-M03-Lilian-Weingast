@@ -7,23 +7,11 @@ export const getCommentById = async (req, res) => {
   try {
     const commentFound = await Comment.find({
         postid : id
-    });
-    const userIds = commentFound.map(comment => comment.autor);
-    const username = await User.findById(userIds);
+    }).populate("autor").sort({date: -1});
 
-    const commentsWithUsernames = commentFound.map(comment => {
-      const user = username ? username.username : null;
-      const formattedDate = comment.date.toISOString().split('T')[0].split('-').reverse().join('/');
-      return {
-        ...comment.toObject(),
-        autor: user,
-        date: formattedDate
-      };
-    });
-
-    if (!commentsWithUsernames)
+    if (!commentFound)
       return res.status(404).json({ message: "No se encontró el comentario" });
-    res.status(200).json(commentsWithUsernames);
+    res.status(200).json(commentFound);
   } catch (error) {
     console.log(error)
     return res
@@ -66,3 +54,19 @@ export const deleteComment = async (req, res) => {
       .json({ message: "Error al intentar eliminar el comentario", error });
   }
 };
+
+//PUT ACTUALIZAR TAREA
+export const updateComment = async (req, res) => {
+  try {
+    const updatedComment = await Comment.findByIdAndUpdate(
+      req.params.id, 
+      req.body, 
+      {new: true}
+      );
+    if (!updatedComment)
+      return res.status(404).json({ message: "Tarea no encontrada" });
+
+    res.status(200).json(updatedComment);
+  } catch (error) {}
+};
+

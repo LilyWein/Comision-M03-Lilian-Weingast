@@ -7,11 +7,12 @@ export const Profile = () => {
   const [editMode, setEditMode] = useState(false);
   const [editedUser, setEditedUser] = useState(user);
   const [forceRefresh, setForceRefresh] = useState(false); 
- 
+
   const handleEditMode = () => {
     if (editMode) {
       updateProfile(user.id,editedUser);
-      setEditedUser(editedUser)
+      setEditedUser(editedUser);
+      window.location.reload();
         }
     setEditMode(!editMode);
   };
@@ -23,7 +24,7 @@ export const Profile = () => {
     }
   }, [forceRefresh, user]);
 
-  
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditedUser({ ...editedUser, [name]: value });
@@ -33,10 +34,10 @@ export const Profile = () => {
     <>
       <Navbar />
       <div className="flex items-center justify-center h-screen">
-       <div className="inline-block rounded overflow-hidden shadow-lg bg-stone-700">
+       <div className="inline-block rounded overflow-hidden shadow-lg bg-gray-600">
         <div className="px-6 py-4">
           <div className="font-mono font-bold text-stone-300 text-center text-xl mb-2">Perfil</div>
-          <ul className="text-stone-300 font-bold text-base list-none"> {/* list-none para eliminar los puntos de la lista */}
+          <ul className="font-mono text-stone-300 font-semibold text-base list-none"> {/* list-none para eliminar los puntos de la lista */}
           <li className="mb-4">
                 <strong>Username:</strong>{' '}
                 {editMode ? (
@@ -64,20 +65,6 @@ export const Profile = () => {
                 )}
               </li>
               <li className="mb-4">
-                <strong>Fecha de creación:</strong>{' '}
-                {editMode ? (
-                  <input
-                    type="date"
-                    name="createdAt"
-                    value={editedUser.createdAt}
-                    onChange={handleInputChange}
-                    readOnly
-                  />
-                ) : (
-                  user.createdAt
-                )}
-              </li>
-              <li className="mb-4">
                 <strong>Avatar:</strong>{' '}
                 {editMode ? (
                   <input
@@ -91,7 +78,7 @@ export const Profile = () => {
                 )}
               </li>
             </ul>
-            <button onClick={handleEditMode}>
+            <button className='bg-gray-700 text-green-400' onClick={handleEditMode}>
               {editMode ? 'Guardar cambios' : 'Editar perfil'}
             </button>
           </div>

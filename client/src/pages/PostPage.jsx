@@ -16,7 +16,10 @@ export const PostPage = () => {
     return (
       <>
         <Navbar />
-        <h1>No Tiene Posteos</h1>
+        <div className="mt-20">
+          <h1>No realizó poseos aún</h1>
+        </div>
+        
       </>
     );
 
@@ -24,7 +27,7 @@ export const PostPage = () => {
     <>
       <Navbar />
           
-      <div className="grid grid-cols-2 gap-2">
+      <div className="mt-20">
         {post.map((post, i) => (
           <PostCard post={post} key={i} />
         ))}

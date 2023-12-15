@@ -4,25 +4,21 @@
 
 ### Requisitos
 <div style="display: flex; justify-content: space-between; align-items: center;">
- <div><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--KkScstnJ--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zojuy79lo3fn3qdt7g6p.png" alt="imagen node + express" width="150"/> <p>
+ <div style="margin-right: 20px;"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--KkScstnJ--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zojuy79lo3fn3qdt7g6p.png" alt="imagen node + express" width="150"/> <p>
 
 Node.js y Express.js instalados en tu sistema.</p></div>
-<div>
+<div style="margin-right: 20px;">
 <img src="https://miro.medium.com/v2/resize:fit:512/1*doAg1_fMQKWFoub-6gwUiQ.png" alt="imagen MongoDb" width="150"/><p>Este programa utiliza MongoDb como base de datos </p></div>
 
 <div>
-<img src="https://cdn.icon-icons.com/icons2/2415/PNG/512/react_original_wordmark_logo_icon_146375.png" alt="React" width="150"/><p>Se necesita tambien la libreria React</p></div>
+<img src="https://camo.githubusercontent.com/61e102d7c605ff91efedb9d7e47c1c4a07cef59d3e1da202fd74f4772122ca4e/68747470733a2f2f766974656a732e6465762f6c6f676f2e737667" alt="React" width="150"/><p>Se utiliza este servidor de desarrollot</p></div>
 </div>
 
-<img src="" alt="estructura del proyecto" width="150"/>
 
 ### Estructura del Proyecto
 •	/Backend: Contiene el código del servidor Express.
 
 •	/client: Contiene el código del cliente React Vite.
-
-
-<img src="" alt="inicio rapido" width="150"/>
 
 
 ### Inicio rápido
@@ -72,10 +68,6 @@ Node.js y Express.js instalados en tu sistema.</p></div>
 10. En la carpeta client: define la conexión con la Api en el archivo setCredentialAxios.js, definiendo el URL de la Api.
 
 
-
-<img src="" alt="ejecución" width="150"/>
-
-
 ### Ejecución:
 •	 Inicia el servidor Express desde la carpeta Backend
 
@@ -86,7 +78,6 @@ Node.js y Express.js instalados en tu sistema.</p></div>
     npm run dev
 
 
-<img src="" alt="imagen MongoDb" width="150"/>
 
 #### Puedes ingresar a la aplicación siguiendo el link que aparece en la terminal al inicializar client.
 

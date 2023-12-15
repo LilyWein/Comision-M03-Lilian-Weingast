@@ -97,23 +97,23 @@ export const PostCard = ({ post }) => {
       </div>
 
 
-      <div className="flex justify-end py-4">
+      <div className="flex justify-end py-2">
       <p className="text-gray-300">{new Date(post.createdAt).toLocaleString('es-ES')}</p>
 
       </div>
 
-      <div className="flex justify-end">
+      <div className="flex justify-end  text">
         {user?.id == post.user?._id || user?.id == post?.user ? (
           <div>
 
             <button
-              className="bg-gray-700 text-green-400 rounded-md w-20 h-10  m-2"
+              className="bg-gray-700 text-green-400 text-xs rounded-md w-20 h-10 m-3"
               onClick={() => redirigir(post._id)}>
               Editar
             </button>
 
             <button
-              className="bg-gray-700 text-red-500  rounded-md w-20 h-10 m-2 "
+              className="bg-gray-700 text-red-500 text-xs rounded-md w-20 h-10 m-3 "
               onClick={() => deletePost(post._id)}>
               Eliminar
             </button>
@@ -131,7 +131,7 @@ export const PostCard = ({ post }) => {
           onClick={toggleAccordion}
           className="w-full py-2 px-4 text-left bg-gray-500 hover:bg-gray-600 text-gray-900 font-bold focus:outline-none"
         >
-          Comentarios
+          Comentarios  (menu desplegable)
         </button>
         {isOpen && (
           <div className="w-full">
@@ -146,41 +146,47 @@ export const PostCard = ({ post }) => {
                   autoFocus
                 />
                 <button
-                  className="flex p-2 text-align:center font-semibold rounded-md bg-gray-700 text-green-400  my-3"
+                  className="flex p-2 text-xs text-align:center font-semibold rounded-md my-3 bg-gray-700 text-green-400  "
                   type="submit"
                 >
                   Guardar
                 </button>
               </form>
-            </div>
+            </div >
             {comments.map((singleComment, i) => (
-              <div className="bg-gray-500  w-full p-10 rounded-md" key={i}>
+              <div className="flex items-center mt-2 text-2x1 bg-gray-400 py-1 my-2 text-2x1 w-full p-10 rounded-md" key={i}>
+              
                 <img
                   className="h-8 w-8 rounded-full"
                   src={singleComment && singleComment.autor?.avatar !== null && singleComment.autor?.avatar !== undefined ? singleComment.autor?.avatar : "https://media.istockphoto.com/id/1298261537/es/vector/marcador-de-posici%C3%B3n-del-icono-de-la-cabeza-del-perfil-del-hombre-en-blanco.jpg?s=612x612&w=0&k=20&c=e6fPb6CH61RvtxbSfhsVInccMuXXLEkKpV6aVGfywWo="}
                   alt=""
                 />
-                <p className="text-2xl">{singleComment.autor?.username}</p>
+                <p className="text-small">{singleComment.autor?.username}</p>
                 {
                   isOnUpdate === singleComment._id ?
                     <>
+                      
                       <input type="text" className="flex items start-0 w-full bg-stone-50 text-black  px-2 py-2 rounded-md my-2" onChange={e => setchangeComment(e.target.value)} />
-                      <button className=" bg-gray-700 text-green-400 rounded-md w-20 h-10 m-3" onClick={() => editComment(singleComment._id)} >Aceptar</button>
-                      <button className=" bg-gray-700 text-red-500 rounded-md w-20 h-10 m-3" onClick={() => setisOnUpdate(0)}>Cancelar</button>
+                      <div className="flex justify-end  text">
+                      <button className=" bg-gray-700 text-green-400 text-xs rounded-md w-20 h-10 m-3" onClick={() => editComment(singleComment._id)} >Aceptar</button>
+                      <button className=" bg-gray-700 text-red-500 text-xs rounded-md w-20 h-10 m-3" onClick={() => setisOnUpdate(0)}>Cancelar</button>
+                    </div>
                     </>
                     :
                     <>
-                      <p className="text-2xl">{singleComment.description}</p>
+                      <p className="w-full text-s bg bg-gray-300 rounded-md text-gray-800">{singleComment.description}</p>
                       {
                         singleComment.autor._id === user?.id ?
                           <>
-                            <button className=" bg-gray-700 text-green-400  rounded-md w-20 h-10 m-3" onClick={() => setisOnUpdate(singleComment._id)} >Editar</button>
-                            <button className="bg-gray-700 text-red-500  rounded-md w-20 h-10 m-3" onClick={() => deleteComm(singleComment._id)}>Eliminar</button>
+                            <div className="flex justify-end  text-small">
+                            <button className=" bg-gray-700 text-green-400 text-xs rounded-md w-20 h-10 m-3" onClick={() => setisOnUpdate(singleComment._id)} >Editar</button>
+                            <button className="bg-gray-700 text-red-500 text-xs rounded-md w-20 h-10 m-3" onClick={() => deleteComm(singleComment._id)}>Eliminar</button>
+                            </div>
                           </> : null
                       }
                     </>
                 }
-                <p className="text-2xl">{new Date(singleComment.date).toLocaleString('es-ES')}</p>
+                            <p className="text-xs">{new Date(singleComment.date).toLocaleString('es-ES')}</p>
               </div>
             ))}
           </div>

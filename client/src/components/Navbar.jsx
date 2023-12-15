@@ -119,7 +119,7 @@ export default function Navbar() {
                               "block px-4 py-2 text-sm text-gray-700 font-bold "
                             )}
                           >
-                            Sign out
+                            Cerrar Sesión
                           </Link>
                         )}
                       </Menu.Item>

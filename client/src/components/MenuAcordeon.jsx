@@ -25,7 +25,11 @@ const MenuAcordeon = () => {
           </button>
           <div className="p-4">
             <p>Comentarios</p>
-            {/* Aquí colocarías los elementos del menú acordeón */}
+            <img
+              className="h-8 w-auto"
+              src="https://cdn-icons-png.flaticon.com/512/9923/9923682.png"
+              alt="Desplegar"
+            />
           </div>
         </div>
       )}

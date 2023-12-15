@@ -24,7 +24,6 @@ export const getAllPostsByAutor = async (req, res) => {
       user: req.user.id,
      
     }).populate("user").sort({createdAt: -1});; 
-    console.log(allPosts)
     res.status(200).json(allPosts);
   } catch (error) {
     console.log(error)
@@ -54,7 +53,6 @@ export const getPostById = async (req, res) => {
 export const createPost = async (req, res) => {
   const { title, description, imageURL} = req.body;
   try {
-    console.log(req)
     const newPost = new Post({
       title,
       description,

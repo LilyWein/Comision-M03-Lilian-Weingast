@@ -16,7 +16,6 @@ export const HomePage = () => {
       <>
                   
         <Navbar />
-        <h1>No Tiene Posteos</h1>
       </>
     );
 

@@ -36,7 +36,8 @@ export const PostFormPage = () => {
   const navigate = useNavigate();
   const onSubmit = handleSubmit((data) => {
     if (id) {
-      updatePost(id,data)
+      updatePost(id,data);
+      window.location.reload();
     } else {
 
       createPost(data); 

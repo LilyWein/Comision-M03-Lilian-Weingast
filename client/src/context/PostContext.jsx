@@ -92,8 +92,13 @@ export const PostProvider = ({ children }) => {
 
     //Crear tarea
     const createComent = async (comment) => {
+      try{
+        const res = await createComentReq(comment);
+        return res
+      }catch (error){
+        return error
+      }
       
-      const res = await createComentReq(comment);
     };
 
   //Actualizar

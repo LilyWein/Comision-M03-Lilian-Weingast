@@ -22,7 +22,6 @@ export const PostCard = ({ post }) => {
     const fetchData = async () => {
       try {
         const commentsData = await getComentById(post._id);
-        console.log(commentsData)
         setComments(commentsData);
       } catch (error) {
         console.error("Error al obtener comentarios:", error);
@@ -57,23 +56,27 @@ export const PostCard = ({ post }) => {
     window.location.reload();
   }
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async (data) => {
     data = {
       ...data,
       postid: post._id
     }
-    createComent(data);
-    window.location.reload();
+    const res = await createComent(data);
+    if (res.response && res.response.status === 401){
+      window.location.href = "/login"
+    }else{
+      window.location.reload();
+    }
   });
 
   return (
-    <div className="bg-gray-500  w-full mt-5 px-3 rounded-md">
+    <div className="bg-gray-500  w-full mb-5 px-4 rounded-md">
       <header className="text-alignate-left mb-5">
-        <h1 className="text-2xl font-bold underline underline-offset-4 uppercase text-gray-950">{post.title}</h1>
+        <h1 className="text-2x1 font-bold underline underline-offset-4 uppercase text-gray-950">{post.title}</h1>
 
         <div className="flex items-center mt-2"> {/* Contenedor flex para avatar y fecha */}
           <img
-            className="h-8 w-8 rounded-full mr-2"
+            className="h- w-8 rounded-full mr-2"
             src={post && post.user?.avatar !== null && post.user?.avatar !== undefined ? post.user?.avatar : "https://media.istockphoto.com/id/1298261537/es/vector/marcador-de-posici%C3%B3n-del-icono-de-la-cabeza-del-perfil-del-hombre-en-blanco.jpg?s=612x612&w=0&k=20&c=e6fPb6CH61RvtxbSfhsVInccMuXXLEkKpV6aVGfywWo="}
             alt=""
           />
@@ -84,7 +87,7 @@ export const PostCard = ({ post }) => {
         </div>
       </header>
 
-      <div className="flex items-start mb-4">
+      <div className="flex items-start">
 
         <img
           src={`${post.imageURL}`}
@@ -97,7 +100,7 @@ export const PostCard = ({ post }) => {
       </div>
 
 
-      <div className="flex justify-end py-2">
+      <div className="flex justify-end">
         <p className="text-gray-300">{new Date(post.createdAt).toLocaleString('es-ES')}</p>
 
       </div>
@@ -107,13 +110,13 @@ export const PostCard = ({ post }) => {
           <div>
 
             <button
-              className="bg-gray-700 text-green-400 text-xs font-semibold rounded-md w-20 h-10 m-3"
+              className="bg-gray-700 text-green-400 text-xs font-semibold rounded-md w-20 h-10 mx-3 mt-2"
               onClick={() => redirigir(post._id)}>
               Editar
             </button>
 
             <button
-              className="bg-gray-700 text-red-500 text-xs font-semibold rounded-md w-20 h-10 m-3 "
+              className="bg-gray-700 text-red-500 text-xs font-semibold rounded-md w-20 h-10 mx-3 mt-2"
               onClick={() => deletePost(post._id)}>
               Eliminar
             </button>
@@ -129,7 +132,7 @@ export const PostCard = ({ post }) => {
       <div className="w-full ">
         <button
           onClick={toggleAccordion}
-          className="w-full py-2 px-4 text-left bg-gray-500 hover:bg-gray-600 text-gray-900 font-bold focus:outline-none"
+          className="w-full px-4 text-left bg-gray-500 hover:bg-gray-600 text-gray-900 font-bold focus:outline-none"
         >
           Comentarios  (menu desplegable)
         </button>

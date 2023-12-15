@@ -25,57 +25,57 @@ export const Login = () => {
   });
   return (
     <>
-    <Navbar/>
-     <div className="flex h-screen items-center justify-center">
-       <div className="bg-gray-600 max-w-md p-10 rounded-md">
-         <h1 className="text-3xl text-center font-semibold mb-10">Iniciar Sesión</h1>
+      <Navbar />
+      <div className="flex h-screen items-center justify-center mt-20">
+        <div className="bg-gray-600 max-w-md p-10 rounded-md">
+          <h1 className="text-3xl text-center font-semibold mb-10">Iniciar Sesión</h1>
           {loginErrors.map((err, i) => (
-           <div key={i} className="bg-red-700 text-white">
-            {err}
-           </div>
+            <div key={i} className="bg-red-700 text-white">
+              {err}
+            </div>
           ))}
-         <form
-          
-          onSubmit={onSubmit}
-         >
-           <input
-            type="email"
-            {...register("email", { required: true })}
-            className="w-full bg-zinc-300 text-gray-950 px-4 py-2 rounded-md my-2"
-            placeholder="Email"
-           />
-           {errors.email && (
-            <p className="text-red-400">El Email es requerido</p>
-           )}
-           <input
-             type="password"
-             {...register("password", { required: true })}
-             className="w-full bg-zinc-300 text-gray-950 px-4 py-2 rounded-md my-8"
-             placeholder="Password"
-           />
-           {errors.password && (
-             <p className="text-red-400">El Password es requerido</p>
-           )}
-           <button
-             className="h-10 px-6 font-semibold rounded-md bg-gray-700 text-green-400"
-             type="submit"
-            >
-             Login
-           </button>
-         </form>
+          <form
 
-         <p className="flex items-center mr-8 pt-10 pl-10">
-           ¿No tienes cuenta aún?{" "}
-           <Link
-             to="/register"
-             className="font-semibold bg-gray-700 text-green-400 rounded-md p-3 ml-6 "
-           >
-            Registrarse
-           </Link>
-         </p>
-       </div>
-     </div>
-  </>
-  
+            onSubmit={onSubmit}
+          >
+            <input
+              type="email"
+              {...register("email", { required: true })}
+              className="w-full bg-zinc-300 text-gray-950 px-4 py-2 rounded-md my-2"
+              placeholder="Email"
+            />
+            {errors.email && (
+              <p className="text-red-400">El Email es requerido</p>
+            )}
+            <input
+              type="password"
+              {...register("password", { required: true })}
+              className="w-full bg-zinc-300 text-gray-950 px-4 py-2 rounded-md my-8"
+              placeholder="Password"
+            />
+            {errors.password && (
+              <p className="text-red-400">El Password es requerido</p>
+            )}
+            <button
+              className="h-10 px-6 font-semibold rounded-md bg-gray-700 text-green-400"
+              type="submit"
+            >
+              Iniciar Sesión
+            </button>
+          </form>
+
+          <p className="flex items-center mr-8 pt-10 pl-10">
+            ¿No tienes cuenta aún?{" "}
+            <Link
+              to="/register"
+              className="font-semibold bg-gray-700 text-green-400 rounded-md p-3 ml-6 "
+            >
+              Registrarse
+            </Link>
+          </p>
+        </div>
+      </div>
+    </>
+
   );
 };

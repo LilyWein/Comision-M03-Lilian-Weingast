@@ -155,21 +155,23 @@ export const PostCard = ({ post }) => {
             </div >
 
             {comments.map((singleComment, i) => (
-              <div className="flex items-center mt-2 text-2x1 bg-gray-400 py-1 my-2 text-2x1 w-full p-10 rounded-md" key={i}>
-                <div  >
-                  <div className="flex items-center">
-                    <img
-                      className="h-8 w-8 rounded-full"
-                      src={singleComment && singleComment.autor?.avatar !== null && singleComment.autor?.avatar !== undefined ? singleComment.autor?.avatar : "https://media.istockphoto.com/id/1298261537/es/vector/marcador-de-posici%C3%B3n-del-icono-de-la-cabeza-del-perfil-del-hombre-en-blanco.jpg?s=612x612&w=0&k=20&c=e6fPb6CH61RvtxbSfhsVInccMuXXLEkKpV6aVGfywWo="}
-                      alt=""
-                    />
-                    <p className="text-small">{singleComment.autor?.username}</p>
-                    <p className="text-xs px-40">{new Date(singleComment.date).toLocaleString('es-ES')}</p>
+              <div className="items-center mt-2 bg-gray-400 py-1 my-2 w-full p-10 rounded-md" key={i}>
+                <div>
+                  <div className="flex justify-between">
+                    <div className="flex items-center">
+                      <img
+                        className="h-8 w-8 rounded-full"
+                        src={singleComment && singleComment.autor?.avatar !== null && singleComment.autor?.avatar !== undefined ? singleComment.autor?.avatar : "https://media.istockphoto.com/id/1298261537/es/vector/marcador-de-posici%C3%B3n-del-icono-de-la-cabeza-del-perfil-del-hombre-en-blanco.jpg?s=612x612&w=0&k=20&c=e6fPb6CH61RvtxbSfhsVInccMuXXLEkKpV6aVGfywWo="}
+                        alt=""
+                      />
+                      <p className="text-s">{singleComment.autor?.username}</p>
+                    </div>
+                    <p className="text-s">{new Date(singleComment.date).toLocaleString('es-ES')}</p>
                   </div>
                   {
                     isOnUpdate === singleComment._id ?
                       <>
-                        <input type="text" className="flex items start-0 w-full bg-stone-50 text-black  px-2 py-2 rounded-md my-2" onChange={e => setchangeComment(e.target.value)} />, <br />
+                        <input type="text" className="flex items start-0 w-full bg-stone-50 text-black  px-2 py-2 rounded-md my-2" onChange={e => setchangeComment(e.target.value)} value={changeComment} />, <br />
 
                         <div className="flex justify-end  text">
                           <button className=" bg-gray-700 text-green-400 text-xs font-semibold rounded-md w-20 h-10 m-3" onClick={() => editComment(singleComment._id)} >Aceptar</button>
@@ -183,7 +185,7 @@ export const PostCard = ({ post }) => {
                           singleComment.autor._id === user?.id ?
                             <>
                               <div className="flex justify-end  text-small">
-                                <button className=" bg-gray-700 text-green-400 text-xs font-semibold rounded-md w-20 h-10 m-3" onClick={() => setisOnUpdate(singleComment._id)} >Editar</button>
+                                <button className=" bg-gray-700 text-green-400 text-xs font-semibold rounded-md w-20 h-10 m-3" onClick={() => {setchangeComment(singleComment.description), setisOnUpdate(singleComment._id) }} >Editar</button>
                                 <button className="bg-gray-700 text-red-500 text-xs font-semibold rounded-md w-20 h-10 m-3" onClick={() => deleteComm(singleComment._id)}>Eliminar</button>
                               </div>
                             </> : null

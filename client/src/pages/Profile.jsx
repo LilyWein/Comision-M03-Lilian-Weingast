@@ -11,7 +11,8 @@ export const Profile = () => {
   const handleEditMode = () => {
     if (editMode) {
       updateProfile(user.id,editedUser);
-      setEditedUser(editedUser)
+      setEditedUser(editedUser);
+      window.location.reload();
         }
     setEditMode(!editMode);
   };
@@ -61,20 +62,6 @@ export const Profile = () => {
                   />
                 ) : (
                   user.email
-                )}
-              </li>
-              <li className="mb-4">
-                <strong>Fecha de creación:</strong>{' '}
-                {editMode ? (
-                  <input
-                    type="date"
-                    name="createdAt"
-                    value={editedUser.createdAt}
-                    onChange={handleInputChange}
-                    readOnly
-                  />
-                ) : (
-                  user.createdAt
                 )}
               </li>
               <li className="mb-4">

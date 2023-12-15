@@ -17,7 +17,7 @@ export const Login = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    if (isAuth) navigate("/post");
+    if (isAuth) navigate("/");
   }, [isAuth]);
 
   const onSubmit = handleSubmit((data) => {
